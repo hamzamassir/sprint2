@@ -8,6 +8,8 @@
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
+    <script src="https://unpkg.com/i18next/dist/umd/i18next.min.js"></script>
+
     <script>
       // On page load or when changing themes, best to add inline in `head` to avoid FOUC
       if (
@@ -20,6 +22,10 @@
         document.documentElement.classList.remove("dark");
       }
     </script>
+    <script>
+      const savedLang = localStorage.getItem("language") || "en";
+      document.documentElement.dir = savedLang === "ar" ? "rtl" : "ltr";
+    </script>
 
     <title>Document</title>
   </head>
@@ -29,43 +35,65 @@
     >
       <!-- Navbar -->
       <nav
-        class="h-[70px] bg-blue-50 dark:bg-gray-800 w-full flex items-center justify-center fixed top-0 z-50 transition-colors duration-200"
+        class="h-[70px] bg-blue-50 dark:bg-gray-800 w-full flex items-center justify-center fixed top-0 z-50 transition-colors duration-200 shadow-sm"
       >
         <div class="h-[70px] w-[85%] flex items-center justify-between">
           <!-- Logo/Brand -->
           <div class="flex flex-col items-start justify-start gap-0">
             <div
               class="text-[#10069F] dark:text-blue-300 font-medium text-lg md:text-[22px] transition-colors"
-            >
-              IS : Simply Dummy Text Of To
-            </div>
+              data-i18n="nav.brand.title"
+            ></div>
             <div
               class="text-gray-400 dark:text-gray-300 text-[10px] md:text-[11px] transition-colors"
-            >
-              Lorem is simply dummy text of the printing and typesetting
-            </div>
+              data-i18n="nav.brand.subtitle"
+            ></div>
           </div>
 
-          <!-- Desktop Menu -->
-          <div class="hidden md:flex items-center justify-start gap-9">
-            <a
-              href="#"
-              class="h-[24px] flex items-center justify-center font-medium text-[20px] text-blue-900 dark:text-blue-300 hover:text-blue-700 dark:hover:text-blue-100 transition-colors"
+          <!-- Desktop Menu and Controls -->
+          <div class="flex items-center gap-4">
+            <!-- Menu Items (Desktop Only) -->
+            <div class="hidden md:flex items-center gap-9">
+              <a
+                href="#"
+                class="h-[24px] flex items-center justify-center font-medium text-[20px] text-blue-900 dark:text-blue-300 hover:text-blue-700 dark:hover:text-blue-100 transition-colors"
+                data-i18n="nav.menu.user"
+              >
+              </a>
+              <a
+                href="#"
+                class="h-[24px] flex items-center justify-center font-medium text-[20px] text-blue-900 dark:text-blue-300 hover:text-blue-700 dark:hover:text-blue-100 transition-colors"
+                data-i18n="nav.menu.lorem"
+              >
+              </a>
+              <a
+                href="#"
+                class="h-[24px] flex items-center justify-center font-medium text-[20px] text-white bg-orange-500 hover:bg-orange-600 dark:bg-orange-600 dark:hover:bg-orange-700 px-6 py-5 rounded-md transition-colors"
+                data-i18n="nav.menu.printing"
+              >
+              </a>
+            </div>
+
+            <!-- Language Toggle -->
+            <button
+              id="languageToggle"
+              class="p-2 rounded-lg hover:bg-blue-100 dark:hover:bg-gray-700 transition-colors flex items-center gap-2"
             >
-              User
-            </a>
-            <a
-              href="#"
-              class="h-[24px] flex items-center justify-center font-medium text-[20px] text-blue-900 dark:text-blue-300 hover:text-blue-700 dark:hover:text-blue-100 transition-colors"
-            >
-              Lorem Us
-            </a>
-            <a
-              href="#"
-              class="h-[24px] flex items-center justify-center font-medium text-[20px] text-white bg-orange-500 hover:bg-orange-600 dark:bg-orange-600 dark:hover:bg-orange-700 px-6 py-5 rounded-md transition-colors"
-            >
-              Printing Us
-            </a>
+              <span class="text-sm font-medium" id="currentLang">EN</span>
+              <svg
+                class="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"
+                />
+              </svg>
+            </button>
 
             <!-- Dark Mode Toggle Button -->
             <button
@@ -95,31 +123,30 @@
                 />
               </svg>
             </button>
-          </div>
 
-          <!-- Hamburger Menu Button -->
-          <button
-            class="md:hidden text-blue-900 dark:text-white focus:outline-none p-2 hover:bg-blue-200 dark:hover:bg-gray-700 rounded-lg transition-colors"
-            id="menuButton"
-            aria-label="Menu"
-          >
-            <svg
-              class="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
+            <!-- Hamburger Menu Button (Mobile Only) -->
+            <button
+              class="md:hidden text-orange-500 dark:text-white focus:outline-none p-2 hover:bg-blue-200 dark:hover:bg-gray-700 rounded-lg transition-colors"
+              id="menuButton"
+              aria-label="Menu"
             >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M4 6h16M4 12h16M4 18h16"
-              />
-            </svg>
-          </button>
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+            </button>
+          </div>
         </div>
       </nav>
-
       <!-- Mobile Menu -->
       <div
         class="fixed top-[70px] left-0 w-full bg-blue-50 dark:bg-gray-800 transform transition-transform duration-300 ease-in-out translate-x-full md:hidden shadow-lg"
@@ -159,36 +186,27 @@
             <div class="md:w-1/2 space-y-6">
               <h1
                 class="text-blue-900 dark:text-blue-300 text-4xl md:text-5xl font-bold leading-tight transition-colors"
-              >
-                Various Versi Have<br />
-                Evolved It ...
-              </h1>
+                data-i18n="hero.title"
+              ></h1>
 
               <div class="inline-block">
                 <span
                   class="bg-orange-500 dark:bg-orange-600 cursor-pointer text-white px-4 py-2 rounded-md transition-colors"
+                  data-i18n="hero.badge"
                 >
-                  Essentially Unch
                 </span>
               </div>
 
               <p
                 class="text-gray-700 dark:text-gray-300 text-lg leading-relaxed max-w-xl transition-colors"
-              >
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's standard dummy
-                text ever since the 1500 when an unknown printer took a galley
-                of type and scrambled it to make a type specimen book. It has
-                survived not only five centuries, It is a long established fact
-                that a reader.
-              </p>
+                data-i18n="hero.description"
+              ></p>
 
               <div>
                 <button
                   class="bg-orange-500 dark:bg-orange-600 cursor-pointer text-white px-6 py-3 rounded-lg hover:bg-orange-600 dark:hover:bg-orange-700 transition-colors"
-                >
-                  Essentially uncha
-                </button>
+                  data-i18n="hero.button"
+                ></button>
               </div>
             </div>
 
@@ -205,25 +223,8 @@
               </div>
             </div>
           </div>
-
-          <!-- Dots Navigation -->
-          <div class="flex justify-center space-x-3 mt-12">
-            <button
-              class="w-3 h-3 rounded-full bg-orange-500 dark:bg-orange-600 transition-colors"
-            ></button>
-            <button
-              class="w-3 h-3 rounded-full bg-blue-900 dark:bg-blue-700 transition-colors"
-            ></button>
-            <button
-              class="w-3 h-3 rounded-full bg-blue-900 dark:bg-blue-700 transition-colors"
-            ></button>
-            <button
-              class="w-3 h-3 rounded-full bg-blue-900 dark:bg-blue-700 transition-colors"
-            ></button>
-          </div>
         </div>
       </section>
-      <script src="./js/hero.js"></script>
       <!-- hero end -->
       <!--cards  -->
       <section
@@ -233,9 +234,8 @@
           <!-- Section Title -->
           <h2
             class="text-blue-900 dark:text-blue-300 text-4xl font-bold text-center mb-16 transition-colors"
-          >
-            Lorem Ipsum Is
-          </h2>
+            data-i18n="cards.title"
+          ></h2>
 
           <!-- Cards Container -->
           <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-7xl mx-auto">
@@ -245,7 +245,6 @@
               <div
                 class="bg-gray-200 dark:bg-gray-700 h-[300px] rounded-lg w-full transition-colors"
               >
-                <!-- Replace with actual image -->
                 <img
                   src="https://cdn.pixabay.com/photo/2017/11/27/21/31/computer-2982270_1280.jpg"
                   alt=""
@@ -257,27 +256,18 @@
               <div class="space-y-4">
                 <h3
                   class="text-blue-900 dark:text-blue-300 text-2xl font-bold transition-colors"
-                >
-                  Lorem Ipsum Lorem<br />Ipsum Lorem
-                </h3>
+                  data-i18n="cards.card1.title"
+                ></h3>
 
                 <p
                   class="text-gray-700 dark:text-gray-300 leading-relaxed transition-colors"
-                >
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the indus try's
-                  standard dummy text ever since the 1500s, when an unknown
-                  printer took a galley of type and s rambled it to make a type
-                  specimen book. It has surv ived not only five centuries, but
-                  also the leap into electronic typesetting remaining
-                  essentially unchanged.
-                </p>
+                  data-i18n="cards.card1.description"
+                ></p>
 
                 <button
                   class="bg-orange-500 dark:bg-orange-600 text-white px-6 py-3 rounded-lg hover:bg-orange-600 dark:hover:bg-orange-700 transition-colors"
-                >
-                  Essentially uncha
-                </button>
+                  data-i18n="cards.card1.button"
+                ></button>
               </div>
             </div>
 
@@ -299,27 +289,18 @@
               <div class="space-y-4">
                 <h3
                   class="text-blue-900 dark:text-blue-300 text-2xl font-bold transition-colors"
-                >
-                  Lorem Ipsum Lorem<br />Ipsum Lorem
-                </h3>
+                  data-i18n="cards.card1.title"
+                ></h3>
 
                 <p
                   class="text-gray-700 dark:text-gray-300 leading-relaxed transition-colors"
-                >
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the indus try's
-                  standard dummy text ever since the 1500s, when an unknown
-                  printer took a galley of type and s rambled it to make a type
-                  specimen book. It has surv ived not only five centuries, but
-                  also the leap into electronic typesetting remaining
-                  essentially unchanged.
-                </p>
+                  data-i18n="cards.card1.description"
+                ></p>
 
                 <button
                   class="bg-orange-500 dark:bg-orange-600 text-white px-6 py-3 rounded-lg hover:bg-orange-600 dark:hover:bg-orange-700 transition-colors"
-                >
-                  Essentially uncha
-                </button>
+                  data-i18n="cards.card1.button"
+                ></button>
               </div>
             </div>
           </div>
@@ -431,15 +412,13 @@
       </section>
       <script src="./js/car.js"></script>
 
-      <!-- cards second -->
       <section
         class="py-16 w-full flex flex-col items-center justify-center bg-white dark:bg-gray-800 transition-colors duration-200"
       >
         <h2
           class="text-blue-900 dark:text-blue-300 text-4xl font-bold text-center mb-16 transition-colors"
-        >
-          Lorem Ipsun
-        </h2>
+          data-i18n="cardsSection.title"
+        ></h2>
 
         <div class="container w-[80%] mx-auto px-4">
           <!-- Grid Container -->
@@ -462,21 +441,17 @@
               <div class="p-6">
                 <h3
                   class="text-blue-900 dark:text-blue-300 group-hover:text-white text-xl font-bold mb-3"
-                >
-                  Lorem Ipsum
-                </h3>
+                  data-i18n="cardsSection.card1.title"
+                ></h3>
                 <p
                   class="text-gray-600 dark:text-gray-300 group-hover:text-blue-100 mb-4"
-                >
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                  standard.
-                </p>
+                  data-i18n="cardsSection.card1.description"
+                ></p>
                 <a
                   href="#"
                   class="text-blue-900 dark:text-blue-300 group-hover:text-white font-medium hover:underline"
+                  data-i18n="cardsSection.card1.link"
                 >
-                  Yours More
                 </a>
               </div>
             </div>
@@ -495,21 +470,17 @@
               <div class="p-6">
                 <h3
                   class="text-blue-900 dark:text-blue-300 group-hover:text-white text-xl font-bold mb-3"
-                >
-                  Lorem Ipsum
-                </h3>
+                  data-i18n="cardsSection.card1.title"
+                ></h3>
                 <p
                   class="text-gray-600 dark:text-gray-300 group-hover:text-blue-100 mb-4"
-                >
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                  standard.
-                </p>
+                  data-i18n="cardsSection.card1.description"
+                ></p>
                 <a
                   href="#"
                   class="text-blue-900 dark:text-blue-300 group-hover:text-white font-medium hover:underline"
+                  data-i18n="cardsSection.card1.link"
                 >
-                  Yours More
                 </a>
               </div>
             </div>
@@ -528,21 +499,17 @@
               <div class="p-6">
                 <h3
                   class="text-blue-900 dark:text-blue-300 group-hover:text-white text-xl font-bold mb-3"
-                >
-                  Lorem Ipsum
-                </h3>
+                  data-i18n="cardsSection.card1.title"
+                ></h3>
                 <p
                   class="text-gray-600 dark:text-gray-300 group-hover:text-blue-100 mb-4"
-                >
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                  standard.
-                </p>
+                  data-i18n="cardsSection.card1.description"
+                ></p>
                 <a
                   href="#"
                   class="text-blue-900 dark:text-blue-300 group-hover:text-white font-medium hover:underline"
+                  data-i18n="cardsSection.card1.link"
                 >
-                  Yours More
                 </a>
               </div>
             </div>
@@ -561,21 +528,17 @@
               <div class="p-6">
                 <h3
                   class="text-blue-900 dark:text-blue-300 group-hover:text-white text-xl font-bold mb-3"
-                >
-                  Lorem Ipsum
-                </h3>
+                  data-i18n="cardsSection.card1.title"
+                ></h3>
                 <p
                   class="text-gray-600 dark:text-gray-300 group-hover:text-blue-100 mb-4"
-                >
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                  standard.
-                </p>
+                  data-i18n="cardsSection.card1.description"
+                ></p>
                 <a
                   href="#"
                   class="text-blue-900 dark:text-blue-300 group-hover:text-white font-medium hover:underline"
+                  data-i18n="cardsSection.card1.link"
                 >
-                  Yours More
                 </a>
               </div>
             </div>
@@ -601,21 +564,17 @@
               <div class="p-6">
                 <h3
                   class="text-blue-900 dark:text-blue-300 group-hover:text-white text-xl font-bold mb-3"
-                >
-                  Lorem Ipsum
-                </h3>
+                  data-i18n="cardsSection.card1.title"
+                ></h3>
                 <p
                   class="text-gray-600 dark:text-gray-300 group-hover:text-blue-100 mb-4"
-                >
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                  standard.
-                </p>
+                  data-i18n="cardsSection.card1.description"
+                ></p>
                 <a
                   href="#"
                   class="text-blue-900 dark:text-blue-300 group-hover:text-white font-medium hover:underline"
+                  data-i18n="cardsSection.card1.link"
                 >
-                  Yours More
                 </a>
               </div>
             </div>
@@ -634,21 +593,17 @@
               <div class="p-6">
                 <h3
                   class="text-blue-900 dark:text-blue-300 group-hover:text-white text-xl font-bold mb-3"
-                >
-                  Lorem Ipsum
-                </h3>
+                  data-i18n="cardsSection.card1.title"
+                ></h3>
                 <p
                   class="text-gray-600 dark:text-gray-300 group-hover:text-blue-100 mb-4"
-                >
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                  standard.
-                </p>
+                  data-i18n="cardsSection.card1.description"
+                ></p>
                 <a
                   href="#"
                   class="text-blue-900 dark:text-blue-300 group-hover:text-white font-medium hover:underline"
+                  data-i18n="cardsSection.card1.link"
                 >
-                  Yours More
                 </a>
               </div>
             </div>
@@ -667,21 +622,17 @@
               <div class="p-6">
                 <h3
                   class="text-blue-900 dark:text-blue-300 group-hover:text-white text-xl font-bold mb-3"
-                >
-                  Lorem Ipsum
-                </h3>
+                  data-i18n="cardsSection.card1.title"
+                ></h3>
                 <p
                   class="text-gray-600 dark:text-gray-300 group-hover:text-blue-100 mb-4"
-                >
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                  standard.
-                </p>
+                  data-i18n="cardsSection.card1.description"
+                ></p>
                 <a
                   href="#"
                   class="text-blue-900 dark:text-blue-300 group-hover:text-white font-medium hover:underline"
+                  data-i18n="cardsSection.card1.link"
                 >
-                  Yours More
                 </a>
               </div>
             </div>
@@ -700,21 +651,17 @@
               <div class="p-6">
                 <h3
                   class="text-blue-900 dark:text-blue-300 group-hover:text-white text-xl font-bold mb-3"
-                >
-                  Lorem Ipsum
-                </h3>
+                  data-i18n="cardsSection.card1.title"
+                ></h3>
                 <p
                   class="text-gray-600 dark:text-gray-300 group-hover:text-blue-100 mb-4"
-                >
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                  standard.
-                </p>
+                  data-i18n="cardsSection.card1.description"
+                ></p>
                 <a
                   href="#"
                   class="text-blue-900 dark:text-blue-300 group-hover:text-white font-medium hover:underline"
+                  data-i18n="cardsSection.card1.link"
                 >
-                  Yours More
                 </a>
               </div>
             </div>
@@ -724,94 +671,67 @@
           <div class="text-center">
             <button
               class="bg-orange-500 dark:bg-orange-600 text-white px-8 py-3 rounded-lg hover:bg-orange-600 dark:hover:bg-orange-700 transition-colors"
-            >
-              Lorem Ipsums is
-            </button>
+              data-i18n="cardsSection.button"
+            ></button>
           </div>
         </div>
       </section>
       <!-- cards second end -->
 
-      <!-- lok -->
       <section
         class="bg-blue-50 dark:bg-gray-800 w-full transition-colors duration-200"
       >
         <div class="max-w-[1920px] w-[80%] mx-auto">
-          <!-- Full width container -->
           <div class="flex flex-col lg:flex-row">
             <!-- Left Content (2/3 width) -->
             <div class="w-full lg:w-2/3 px-4 lg:px-16 py-12 lg:py-24">
               <div class="max-w-3xl">
-                <!-- Constrain text width for readability -->
                 <h2
                   class="text-blue-900 dark:text-blue-300 text-3xl lg:text-4xl xl:text-5xl font-bold leading-tight mb-8 transition-colors"
-                >
-                  Lorem Ipsum Is Simply Of<br />
-                  Text Of The Printing And
-                </h2>
+                  data-i18n="lookSection.title"
+                ></h2>
 
                 <div
                   class="space-y-6 text-gray-700 dark:text-gray-300 text-base lg:text-lg leading-relaxed transition-colors"
                 >
-                  <p>
-                    Lorem Ipsum is simply dummy text of the printing and
-                    typesetting industry. Lorem Ipsum has been the industry's
-                    standard dummy text ever since the 1500 when an unknown
-                    printer took a galley of type and scrambled it to make a
-                    type specimen book. It has survived not only five centuries,
-                    but also.
-                  </p>
-
-                  <p>
-                    Lorem Ipsum is simply dummy text of the printing and
-                    typesetting industry. Lorem Ipsum has been the industry's
-                    standard dummy text ever since the 1500 when an unknown
-                    printer took a galley of type and scrambled it to make a
-                    type specimen book. It has survived not only five centuries,
-                    but also.Lorem Ipsum is simply dummy text of the printing
-                    and typesetting industry.
-                  </p>
-
-                  <p>
-                    Lorem Ipsum has been the industry's standard dummy text ever
-                    since the 1500s,
-                  </p>
+                  <p data-i18n="lookSection.paragraph1"></p>
+                  <p data-i18n="lookSection.paragraph2"></p>
+                  <p data-i18n="lookSection.paragraph3"></p>
                 </div>
+
                 <button
                   class="mt-8 bg-orange-500 dark:bg-orange-600 text-white px-8 py-3 rounded-lg hover:bg-orange-600 dark:hover:bg-orange-700 transition-colors"
-                >
-                  Simpli Us
-                </button>
+                  data-i18n="lookSection.button"
+                ></button>
               </div>
             </div>
 
             <!-- Right Content (1/3 width) -->
             <div class="w-full lg:w-1/3 p-8 mt-">
-              <!-- Image Container -->
               <div class="relative max-w-md mx-auto">
-                <!-- Gray background with border -->
                 <div
                   class="aspect-[3/4] w-full relative bg-gray-300 dark:bg-gray-700 transition-colors"
                 >
-                  <!-- White border effect -->
                   <div
                     class="absolute inset-3 border-2 border-white dark:border-gray-600 z-10 transition-colors"
                   ></div>
-
-                  <!-- Image -->
                   <img
                     src="https://cdn.pixabay.com/photo/2021/03/29/12/16/stairs-6133971_1280.jpg"
                     alt="Featured image"
                     class="w-full h-full object-cover"
                   />
-
-                  <!-- Blue caption box -->
                   <div
                     class="bg-blue-900 dark:bg-blue-800 text-white p-4 absolute bottom-0 left-0 right-0 transition-colors"
                   >
                     <div class="text-center">
-                      <h3 class="text-xl font-bold mb-2">Lorem Ipsum</h3>
-                      <p class="text-sm">Lorem Ipsum Has Been In Industry</p>
+                      <h3
+                        class="text-xl font-bold mb-2"
+                        data-i18n="lookSection.caption.title"
+                      ></h3>
+                      <p
+                        class="text-sm"
+                        data-i18n="lookSection.caption.subtitle"
+                      ></p>
                     </div>
                   </div>
                 </div>
@@ -820,7 +740,6 @@
           </div>
         </div>
       </section>
-      <!-- lok end -->
 
       <!-- Newsletter Section -->
       <section
@@ -830,12 +749,12 @@
           <div class="max-w-4xl mx-auto text-center">
             <h2
               class="text-blue-900 dark:text-blue-300 text-4xl font-bold mb-6 transition-colors"
-            >
-              Subscribe to Our Newsletter
-            </h2>
-            <p class="text-gray-700 dark:text-gray-300 mb-8 transition-colors">
-              Stay updated with our latest news and special offers
-            </p>
+              data-i18n="newsletter.title"
+            ></h2>
+            <p
+              class="text-gray-700 dark:text-gray-300 mb-8 transition-colors"
+              data-i18n="newsletter.subtitle"
+            ></p>
 
             <div
               class="flex flex-col md:flex-row gap-4 justify-center items-center"
@@ -843,23 +762,20 @@
               <div class="w-full md:w-1/2">
                 <input
                   type="email"
-                  placeholder="Enter your email address"
                   class="w-full px-6 py-3 bg-white dark:bg-gray-700 rounded-lg border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:text-white transition-colors"
+                  data-i18n="[placeholder]newsletter.emailPlaceholder"
                 />
               </div>
               <button
                 class="w-full md:w-auto bg-orange-500 dark:bg-orange-600 text-white px-8 py-3 rounded-lg hover:bg-orange-600 dark:hover:bg-orange-700 transition-colors whitespace-nowrap"
-              >
-                Subscribe Now
-              </button>
+                data-i18n="newsletter.button"
+              ></button>
             </div>
 
             <p
               class="text-gray-500 dark:text-gray-400 text-sm mt-4 transition-colors"
-            >
-              By subscribing you agree to receive our promotional marketing
-              materials
-            </p>
+              data-i18n="newsletter.disclaimer"
+            ></p>
           </div>
         </div>
       </section>
@@ -871,9 +787,8 @@
           <div class="max-w-4xl mx-auto">
             <h2
               class="text-blue-900 dark:text-blue-300 text-4xl font-bold text-center mb-12 transition-colors"
-            >
-              Contact Us
-            </h2>
+              data-i18n="contact.title"
+            ></h2>
 
             <div
               class="bg-white dark:bg-gray-700 p-8 rounded-lg shadow-lg transition-colors"
@@ -883,23 +798,23 @@
                   <div>
                     <label
                       class="block text-blue-900 dark:text-blue-300 font-medium mb-2 transition-colors"
-                      >First Name</label
+                      data-i18n="contact.firstName"
                     >
+                    </label>
                     <input
                       type="text"
                       class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
-                      placeholder="Enter your first name"
                     />
                   </div>
                   <div>
                     <label
                       class="block text-blue-900 dark:text-blue-300 font-medium mb-2 transition-colors"
-                      >Last Name</label
+                      data-i18n="contact.lastName"
                     >
+                    </label>
                     <input
                       type="text"
                       class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
-                      placeholder="Enter your last name"
                     />
                   </div>
                 </div>
@@ -907,41 +822,61 @@
                 <div>
                   <label
                     class="block text-blue-900 dark:text-blue-300 font-medium mb-2 transition-colors"
-                    >Email Address</label
+                    data-i18n="contact.email"
                   >
+                  </label>
                   <input
                     type="email"
                     class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
-                    placeholder="Enter your email"
                   />
                 </div>
 
                 <div>
                   <label
                     class="block text-blue-900 dark:text-blue-300 font-medium mb-2 transition-colors"
-                    >Subject</label
+                    data-i18n="contact.subject"
                   >
-                  <select
-                    class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                  </label>
+                  <div
+                    class="w-full px-4 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
                   >
-                    <option value="" disabled selected>Select a subject</option>
-                    <option value="general">General Inquiry</option>
-                    <option value="support">Technical Support</option>
-                    <option value="billing">Billing Question</option>
-                    <option value="other">Other</option>
-                  </select>
+                    <select
+                      class="w-full px-4 py-3 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white transition-colors"
+                    >
+                      <option
+                        value=""
+                        disabled
+                        selected
+                        data-i18n="contact.select"
+                      ></option>
+                      <option
+                        value="general"
+                        data-i18n="contact.general"
+                      ></option>
+                      <option
+                        value="support"
+                        data-i18n="contact.support"
+                      ></option>
+                      <option
+                        value="billing"
+                        data-i18n="contact.billing"
+                      ></option>
+                      <option value="other" data-i18n="contact.other"></option>
+                    </select>
+                  </div>
                 </div>
 
                 <div>
                   <label
                     class="block text-blue-900 dark:text-blue-300 font-medium mb-2 transition-colors"
-                    >Message</label
+                    data-i18n="contact.message"
                   >
+                  </label>
                   <textarea
                     rows="5"
                     class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
-                    placeholder="Enter your message"
-                  ></textarea>
+                  >
+                  </textarea>
                 </div>
 
                 <div class="flex items-center">
@@ -953,17 +888,17 @@
                   <label
                     for="terms"
                     class="ml-2 text-gray-600 dark:text-gray-300 transition-colors"
-                    >I agree to the terms and conditions</label
+                    data-i18n="contact.terms"
                   >
+                  </label>
                 </div>
 
                 <div class="text-center">
                   <button
                     type="submit"
                     class="bg-orange-500 dark:bg-orange-600 text-white px-8 py-3 rounded-lg hover:bg-orange-600 dark:hover:bg-orange-700 transition-colors"
-                  >
-                    Send Message
-                  </button>
+                    data-i18n="contact.submit"
+                  ></button>
                 </div>
               </form>
             </div>
@@ -1218,5 +1153,7 @@
     </div>
     <script src="./js/navbar.js"></script>
     <script src="./js/darkMode.js"></script>
+    <script src="./js/i18n.js"></script>
+    <script src="./js/translations.js"></script>
   </body>
 </html>
