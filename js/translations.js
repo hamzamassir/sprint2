@@ -66,7 +66,68 @@ const resources = {
                 other: "Other",
                 message: "Message",
                 terms: "I agree to the terms and conditions",
-                submit: "Send Message"
+                submit: "Send Message",
+                success: "Message sent successfully!",
+                error: "Please fix the errors above",
+                errors: {
+                    firstName: {
+                        required: "First name is required",
+                        minLength: "First name must be at least 2 characters",
+                        pattern: "Please enter a valid name"
+                    },
+                    lastName: {
+                        required: "Last name is required",
+                        minLength: "Last name must be at least 2 characters",
+                        pattern: "Please enter a valid name"
+                    },
+                    email: {
+                        required: "Email is required",
+                        pattern: "Please enter a valid email address"
+                    },
+                    subject: {
+                        required: "Please select a subject"
+                    },
+                    message: {
+                        required: "Message is required",
+                        minLength: "Message must be at least 10 characters"
+                    },
+                    terms: {
+                        required: "You must accept the terms and conditions"
+                    }
+                }},
+            footer: {
+                column1: {
+                    title: "User"
+                },
+                column2: {
+                    title: "Lorem Us",
+                    link1: "Remaini",
+                    link2: "Lorem Ipsums",
+                    link3: "Variations Of Pass"
+                },
+                column3: {
+                    title: "Printing Us",
+                    link1: "Lorem Us",
+                    link2: "Printing Us"
+                },
+                contact: {
+                    address: "Lorem Ipsum Lorem,Lorem Lorem Ipsum Lorem",
+                    phone: "123-456-7890",
+                    email: "lorem@gmail.com",
+                    hours: "Monday - Friday 0AM - 00 PM"
+                },
+                copyright: "It Is A Long Established Fact That A Reader Will Be Distracted By The Readable Content"
+            },
+            showMore: {
+                initialText: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
+                paragraph1: "When an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+                paragraph2: "It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+                paragraph3: "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.",
+                button: "Show More",
+                hideButton: "Show Less"
+            },
+            sponsors: {
+                title: "Technologies We Use"
             }
 
         }
@@ -138,7 +199,69 @@ const resources = {
                 other: "آخر",
                 message: "الرسالة",
                 terms: "أوافق على الشروط والأحكام",
-                submit: "إرسال الرسالة"
+                submit: "إرسال الرسالة",
+                success: "تم إرسال الرسالة بنجاح!",
+                error: "يرجى تصحيح الأخطاء أعلاه",
+                errors: {
+                    firstName: {
+                        required: "الاسم الأول مطلوب",
+                        minLength: "يجب أن يكون الاسم الأول حرفين على الأقل",
+                        pattern: "يرجى إدخال اسم صحيح"
+                    },
+                    lastName: {
+                        required: "اسم العائلة مطلوب",
+                        minLength: "يجب أن يكون اسم العائلة حرفين على الأقل",
+                        pattern: "يرجى إدخال اسم صحيح"
+                    },
+                    email: {
+                        required: "البريد الإلكتروني مطلوب",
+                        pattern: "يرجى إدخال بريد إلكتروني صحيح"
+                    },
+                    subject: {
+                        required: "يرجى اختيار موضوع"
+                    },
+                    message: {
+                        required: "الرسالة مطلوبة",
+                        minLength: "يجب أن تكون الرسالة 10 أحرف على الأقل"
+                    },
+                    terms: {
+                        required: "يجب الموافقة على الشروط والأحكام"
+                    }
+                }
+            },
+            footer: {
+                column1: {
+                    title: "المستخدم"
+                },
+                column2: {
+                    title: "لوريم لنا",
+                    link1: "ريمايني",
+                    link2: "لوريم ايبسوم",
+                    link3: "تنويعات المرور"
+                },
+                column3: {
+                    title: "الطباعة لنا",
+                    link1: "لوريم لنا",
+                    link2: "الطباعة لنا"
+                },
+                contact: {
+                    address: "لوريم ايبسوم لوريم، لوريم لوريم ايبسوم لوريم",
+                    phone: "٧٨٩٠-٤٥٦-١٢٣",
+                    email: "lorem@gmail.com",
+                    hours: "الاثنين - الجمعة ٠ صباحاً - ٠٠ مساءً"
+                },
+                copyright: "حقيقة مثبتة منذ زمن طويل أن القارئ سيلهى بالمحتوى المقروء للصفحة"
+            },
+            showMore: {
+                initialText: "لوريم ايبسوم هو نص شكلي يستخدم في صناعة الطباعة والتنضيد. كان لوريم ايبسوم ولايزال المعيار للنص الشكلي منذ القرن الخامس عشر عندما قامت مطبعة مجهولة برص مجموعة من الأحرف.",
+                paragraph1: "هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز على الشكل الخارجي للنص أو شكل توضع الفقرات في الصفحة التي يقرأها.",
+                paragraph2: "ولذلك يتم استخدام طريقة لوريم إيبسوم لأنها تعطي توزيعاَ طبيعياَ للأحرف إلى حد ما، عوضاً عن استخدام محتوى نصي، مما يجعله يبدو وكأنه نص مقروء.",
+                paragraph3: "العديد من برامح النشر المكتبي وبرامح تحرير صفحات الويب تستخدم لوريم إيبسوم بشكل إفتراضي كنموذج عن النص، وإذا قمت بإدخال في أي محرك بحث ستظهر العديد من المواقع الحديثة العهد في نتائج البحث.",
+                button: "عرض المزيد",
+                hideButton: "عرض أقل"
+            },
+            sponsors: {
+                title: "التقنيات التي نستخدمها"
             }
         }
     }

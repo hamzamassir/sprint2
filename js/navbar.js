@@ -30,14 +30,14 @@ document.addEventListener('DOMContentLoaded', function() {
         toggleMenu();
     });
 
-    // Close menu when clicking outside
+    // click outside
     document.addEventListener('click', function(e) {
         if (isMenuOpen && !mobileMenu.contains(e.target) && !menuButton.contains(e.target)) {
             toggleMenu();
         }
     });
 
-    // Close menu when window is resized to desktop view
+    // desktop view
     window.addEventListener('resize', function() {
         if (window.innerWidth >= 768 && isMenuOpen) {
             toggleMenu();
