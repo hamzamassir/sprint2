@@ -3,25 +3,35 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="../dist/style.css" rel="stylesheet" />
+    <meta
+      name="description"
+      content="Sprint2 Website: Engaging content, modern design, and interactive features."
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
 
-    <script src="https://unpkg.com/i18next/dist/umd/i18next.min.js"></script>
+    <link href="../dist/style.css" rel="stylesheet" />
 
-    <script>
-      if (
-        localStorage.getItem("dark") === "true" ||
-        (!("dark" in localStorage) &&
-          window.matchMedia("(prefers-color-scheme: dark)").matches)
-      ) {
-        document.documentElement.classList.add("dark");
-      } else {
-        document.documentElement.classList.remove("dark");
-      }
-    </script>
+    <link rel="preload" href="../js/car.js" as="script" />
+    <link rel="preload" href="../js/sponsor-carousel.js" as="script" />
+    <link rel="preload" href="../js/contact-form.js" as="script" />
+    <link rel="preload" href="../js/navbar.js" as="script" />
+    <link rel="preload" href="../js/darkMode.js" as="script" />
+    <!-- cards script -->
+    <link rel="preload" href="../js/cards.js" as="script" />
+
+    <script src="../js/car.js" defer></script>
+    <script src="../js/sponsor-carousel.js" defer></script>
+    <script src="../js/contact-form.js" defer></script>
+    <script src="../js/navbar.js" defer></script>
+    <script src="../js/darkMode.js" defer></script>
+    <!-- cards script -->
+    <script src="../js/cards.js" defer></script>
 
     <title>Sprint2</title>
   </head>
@@ -30,1194 +40,1029 @@
       class="w-full h-screen pt-[70px] flex flex-col justify-start items-start"
     >
       <!-- Navbar -->
-      <nav
-        class="h-[70px] bg-blue-50 dark:bg-gray-800 w-full flex items-center justify-center fixed top-0 z-50 transition-colors duration-200 shadow-sm overflow-hidden"
-      >
-        <div class="h-[70px] w-[85%] flex items-center justify-between">
-          <div class="flex flex-col items-start justify-start gap-0">
-            <div
-              class="text-[#10069F] dark:text-blue-300 font-medium text-xs md:text-[22px] transition-colors"
-            >
-              IS : Simply Dummy Text Of To
-            </div>
-            <div
-              class="text-gray-400 dark:text-gray-300 text-[10px] md:text-[11px] transition-colors"
-            >
-              Lorem is simply dummy text of the printing and typesetting
-            </div>
-          </div>
-
-          <div class="flex items-center gap-4">
-            <!-- Desktop Menu -->
-            <div class="hidden md:flex items-center gap-9">
-              <a
-                href="#"
-                class="h-[24px] flex items-center justify-center font-medium text-[20px] text-blue-900 dark:text-blue-300 hover:text-blue-700 dark:hover:text-blue-100 transition-colors"
-                >User
-              </a>
-              <a
-                href="#"
-                class="h-[24px] flex items-center justify-center font-medium text-[20px] text-blue-900 dark:text-blue-300 hover:text-blue-700 dark:hover:text-blue-100 transition-colors"
-                >Lorem Us
-              </a>
-              <a
-                href="#"
-                class="h-[24px] flex items-center justify-center font-medium text-[20px] text-white bg-orange-500 hover:bg-orange-600 dark:bg-orange-600 dark:hover:bg-orange-700 px-6 py-5 rounded-md transition-colors"
-                >Printing Us
-              </a>
-            </div>
-
-            <!-- Language Toggle -->
-            <button
-              id="languageToggle"
-              class="p-2 rounded-lg hover:bg-blue-100 dark:hover:bg-gray-700 dark:text-white transition-colors flex items-center gap-2"
-            >
-              <a
-                href="/ar/index.html"
-                class="text-sm font-medium en-text dark:text-white"
-                >ع</a
-              >
-
-              <svg
-                class="w-5 h-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"
-                />
-              </svg>
-            </button>
-
-            <!-- Dark Mode Toggle Button -->
-            <button
-              id="darkModeToggle"
-              class="p-2 rounded-lg hover:bg-blue-100 dark:hover:bg-gray-700 transition-colors"
-              aria-label="Toggle dark mode"
-            >
-              <!-- Sun-->
-              <svg
-                class="hidden dark:block w-6 h-6 text-yellow-300"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
-                />
-              </svg>
-              <!-- Moon-->
-              <svg
-                class="block dark:hidden w-6 h-6 text-gray-800 dark:text-white"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
-                />
-              </svg>
-            </button>
-
-            <!-- Ham Menu -->
-            <button
-              class="md:hidden text-orange-500 dark:text-white focus:outline-none p-2 hover:bg-blue-200 dark:hover:bg-gray-700 rounded-lg transition-colors"
-              id="menuButton"
-              aria-label="Menu"
-            >
-              <svg
-                class="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              </svg>
-            </button>
-          </div>
-        </div>
-      </nav>
-      <!-- Mobile -->
-      <div
-        class="fixed top-[70px] left-0 w-full bg-blue-50 dark:bg-gray-800 transform transition-transform duration-300 ease-in-out translate-x-full md:hidden shadow-lg"
-        id="mobileMenu"
-      >
-        <div class="p-4 space-y-4">
-          <a
-            href="#"
-            class="block text-blue-900 dark:text-blue-300 hover:bg-blue-200 dark:hover:bg-gray-700 px-4 py-2 rounded-md transition-colors"
-          >
-            User
-          </a>
-          <a
-            href="#"
-            class="block text-blue-900 dark:text-blue-300 hover:bg-blue-200 dark:hover:bg-gray-700 px-4 py-2 rounded-md transition-colors"
-          >
-            Lorem Us
-          </a>
-          <a
-            href="#"
-            class="block text-white bg-orange-500 hover:bg-orange-600 dark:bg-orange-600 dark:hover:bg-orange-700 px-4 py-2 rounded-md text-center transition-colors"
-          >
-            Printing Us
-          </a>
-        </div>
-      </div>
-
-      <!-- hero -->
-      <section
-        class="bg-blue-50 dark:bg-gray-800 w-full flex flex-row items-center justify-center transition-colors duration-200"
-      >
-        <div class="container w-full px-4 py-16">
-          <div
-            class="flex w-full flex-col md:flex-row items-center justify-between gap-8"
-          >
-            <div class="md:w-1/2 space-y-6">
-              <h1
-                class="text-blue-900 dark:text-blue-300 text-4xl md:text-5xl font-bold leading-tight transition-colors"
-              >
-                Various Versi Have <br />Evolved It ...
-              </h1>
-
-              <div class="inline-block">
-                <span
-                  class="bg-orange-500 dark:bg-orange-600 cursor-pointer text-white px-4 py-2 rounded-md transition-colors"
-                  >Essentially Unch
-                </span>
-              </div>
-
-              <p
-                class="text-gray-700 dark:text-gray-300 text-lg leading-relaxed max-w-xl transition-colors"
-              >
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's standard dummy
-                text ever since the 1500 when an unknown printer took a galley
-                of type and scrambled it to make a type specimen book. It has
-                survived not only five centuries, It is a long established fact
-                that a reader.
-              </p>
-
-              <div>
-                <button
-                  class="bg-orange-500 dark:bg-orange-600 cursor-pointer text-white px-6 py-3 rounded-lg hover:bg-orange-600 dark:hover:bg-orange-700 transition-colors"
-                >
-                  Essentially uncha
-                </button>
-              </div>
-            </div>
-
-            <div class="md:w-1/2 mt-8 md:mt-0">
+      <header class="w-full">
+        <nav
+          class="h-[70px] bg-blue-50 dark:bg-gray-800 w-full flex items-center justify-center fixed top-0 z-50 transition-colors duration-200 shadow-sm overflow-hidden"
+        >
+          <div class="h-[70px] w-[85%] flex items-center justify-between">
+            <div class="flex flex-col items-start justify-start gap-0">
               <div
-                class="bg-gray-200 dark:bg-gray-700 h-[400px] rounded-lg transition-colors"
+                class="text-[#10069F] dark:text-blue-300 font-medium text-xs md:text-[22px] transition-colors"
               >
-                <img
-                  src="https://cdn.pixabay.com/photo/2021/03/29/12/16/stairs-6133971_1280.jpg"
-                  alt=""
-                  class="w-full h-full object-cover rounded-lg"
-                />
+                IS : Simply Dummy Text Of To
+              </div>
+              <div
+                class="text-gray-400 dark:text-gray-300 text-[10px] md:text-[11px] transition-colors"
+              >
+                Lorem is simply dummy text of the printing and typesetting
+              </div>
+            </div>
+
+            <div class="flex items-center gap-4">
+              <!-- Desktop Menu -->
+              <div class="hidden md:flex items-center gap-9">
+                <a
+                  href="#"
+                  class="h-[24px] flex items-center justify-center font-medium text-[20px] text-blue-900 dark:text-blue-300 hover:text-blue-700 dark:hover:text-blue-100 transition-colors"
+                  >User
+                </a>
+                <a
+                  href="#"
+                  class="h-[24px] flex items-center justify-center font-medium text-[20px] text-blue-900 dark:text-blue-300 hover:text-blue-700 dark:hover:text-blue-100 transition-colors"
+                  >Lorem Us
+                </a>
+                <a
+                  href="#"
+                  class="h-[24px] flex items-center justify-center font-medium text-[20px] text-white bg-orange-500 hover:bg-orange-600 dark:bg-orange-600 dark:hover:bg-orange-700 px-6 py-5 rounded-md transition-colors"
+                  >Printing Us
+                </a>
+              </div>
+
+              <!-- Language Toggle -->
+              <a
+                id="languageToggle"
+                href="/ar/index.html"
+                class="p-2 min-w-[44px] min-h-[44px] rounded-lg hover:bg-blue-100 dark:hover:bg-gray-700 dark:text-white transition-colors flex items-center gap-2"
+              >
+                <span class="text-sm font-medium en-text dark:text-white"
+                  >ع</span
+                >
+                <svg
+                  class="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"
+                  />
+                </svg>
+              </a>
+
+              <!-- Dark Mode Toggle Button -->
+              <button
+                id="darkModeToggle"
+                class="p-2 rounded-lg hover:bg-blue-100 dark:hover:bg-gray-700 transition-colors"
+                aria-label="Toggle dark mode"
+              >
+                <!-- Sun-->
+                <svg
+                  class="hidden dark:block w-6 h-6 text-yellow-300"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+                  />
+                </svg>
+                <!-- Moon-->
+                <svg
+                  class="block dark:hidden w-6 h-6 text-gray-800 dark:text-white"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
+                  />
+                </svg>
+              </button>
+
+              <!-- Ham Menu -->
+              <button
+                class="md:hidden text-orange-500 dark:text-white focus:outline-none p-2 hover:bg-blue-200 dark:hover:bg-gray-700 rounded-lg transition-colors"
+                id="menuButton"
+                aria-label="Menu"
+              >
+                <svg
+                  class="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </nav>
+        <!-- Mobile -->
+        <div
+          class="fixed z-50 top-[70px] left-0 w-full bg-blue-50 dark:bg-gray-800 transform transition-transform duration-300 ease-in-out translate-x-full md:hidden shadow-lg"
+          id="mobileMenu"
+        >
+          <div class="p-4 space-y-4">
+            <a
+              href="#"
+              class="block text-blue-900 dark:text-blue-300 hover:bg-blue-200 dark:hover:bg-gray-700 px-4 py-2 rounded-md transition-colors"
+            >
+              User
+            </a>
+            <a
+              href="#"
+              class="block text-blue-900 dark:text-blue-300 hover:bg-blue-200 dark:hover:bg-gray-700 px-4 py-2 rounded-md transition-colors"
+            >
+              Lorem Us
+            </a>
+            <a
+              href="#"
+              class="block text-white bg-orange-500 hover:bg-orange-600 dark:bg-orange-600 dark:hover:bg-orange-700 px-4 py-2 rounded-md text-center transition-colors"
+            >
+              Printing Us
+            </a>
+          </div>
+        </div>
+      </header>
+      <main class="w-full">
+        <!-- hero -->
+        <section
+          class="bg-blue-50 dark:bg-gray-800 w-full flex flex-row items-center justify-center transition-colors duration-200"
+        >
+          <div class="container w-full px-4 py-16">
+            <div
+              class="flex w-full flex-col md:flex-row items-center justify-between gap-8"
+            >
+              <div class="md:w-1/2 space-y-6">
+                <h1
+                  class="text-blue-900 dark:text-blue-300 text-4xl md:text-5xl font-bold leading-tight transition-colors"
+                >
+                  Various Versi Have <br />Evolved It ...
+                </h1>
+
+                <div class="inline-block">
+                  <span
+                    class="bg-orange-500 dark:bg-orange-600 cursor-pointer text-white px-4 py-2 rounded-md transition-colors"
+                    >Essentially Unch
+                  </span>
+                </div>
+
+                <p
+                  class="text-gray-700 dark:text-gray-300 text-lg leading-relaxed max-w-xl transition-colors"
+                >
+                  Lorem Ipsum is simply dummy text of the printing and
+                  typesetting industry. Lorem Ipsum has been the industry's
+                  standard dummy text ever since the 1500 when an unknown
+                  printer took a galley of type and scrambled it to make a type
+                  specimen book. It has survived not only five centuries, It is
+                  a long established fact that a reader.
+                </p>
+
+                <div>
+                  <button
+                    class="bg-orange-500 dark:bg-orange-600 cursor-pointer text-white px-6 py-3 rounded-lg hover:bg-orange-600 dark:hover:bg-orange-700 transition-colors"
+                  >
+                    Essentially uncha
+                  </button>
+                </div>
+              </div>
+
+              <div class="md:w-1/2 mt-8 md:mt-0">
+                <div
+                  class="bg-gray-200 dark:bg-gray-700 h-[400px] rounded-lg transition-colors"
+                >
+                  <picture>
+                    <!-- Desktop screens -->
+                    <source
+                      media="(min-width: 1024px)"
+                      srcset="../assets/stairs-1280.webp"
+                      sizes="1280px"
+                    />
+
+                    <!-- Tablet screens -->
+                    <source
+                      media="(min-width: 768px)"
+                      srcset="../assets/stairs-960.webp"
+                      sizes="960px"
+                    />
+
+                    <!-- Mobile screens -->
+                    <source
+                      media="(max-width: 767px)"
+                      srcset="../assets/stairs-640.webp"
+                      sizes="640px"
+                    />
+
+                    <!-- Fallback image -->
+                    <img
+                      src="../assets/stairs-960.webp"
+                      alt="Stairs"
+                      class="w-full h-[400px] object-cover rounded-lg"
+                      loading="lazy"
+                    />
+                  </picture>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
-      <!-- hero end -->
-      <!--cards  -->
-      <section
-        class="py-16 bg-white dark:bg-gray-800 w-full flex flex-row items-center justify-center transition-colors duration-200"
-      >
-        <div class="container mx-auto px-4 w-full">
+        </section>
+        <!-- hero end -->
+
+        <!--cards  -->
+        <section
+          class="py-16 bg-white dark:bg-gray-700 w-full flex flex-row items-center justify-center transition-colors duration-200"
+        >
+          <div class="container mx-auto px-4 w-full">
+            <h2
+              class="text-blue-900 dark:text-blue-300 text-4xl font-bold text-center mb-16 transition-colors"
+            >
+              Lorem Ipsum Is
+            </h2>
+
+            <div
+              class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-7xl mx-auto"
+            >
+              <div class="space-y-6">
+                <div
+                  class="bg-gray-200 dark:bg-gray-700 h-[300px] rounded-lg w-full transition-colors"
+                >
+                  <picture>
+                    <!-- Desktop screens -->
+                    <source
+                      media="(min-width: 1024px)"
+                      srcset="../assets/computer-1280.webp"
+                      sizes="1280px"
+                    />
+
+                    <!-- Tablet screens -->
+                    <source
+                      media="(min-width: 768px)"
+                      srcset="../assets/computer-960.webp"
+                      sizes="960px"
+                    />
+
+                    <!-- Mobile screens -->
+                    <source
+                      media="(max-width: 767px)"
+                      srcset="../assets/computer-640.webp"
+                      sizes="640px"
+                    />
+
+                    <!-- Fallback image -->
+                    <img
+                      src="../assets/computer-960.webp"
+                      alt="Stairs"
+                      class="w-full h-full object-cover rounded-lg"
+                      loading="lazy"
+                    />
+                  </picture>
+                </div>
+
+                <div class="space-y-4">
+                  <h3
+                    class="text-blue-900 dark:text-blue-300 text-2xl font-bold transition-colors"
+                  >
+                    Lorem Ipsum Lorem <br />Ipsum Lorem
+                  </h3>
+
+                  <p
+                    class="text-gray-700 dark:text-gray-300 leading-relaxed transition-colors"
+                  >
+                    Lorem Ipsum is simply dummy text of the printing and
+                    typesetting industry. Lorem Ipsum has been the indus try's
+                    standard dummy text ever since the 1500s, when an unknown
+                    printer took a galley of type and s rambled it to make a
+                    type specimen book. It has surv ived not only five
+                    centuries, but also the leap into electronic typesetting
+                    remaining essentially unchanged.
+                  </p>
+
+                  <button
+                    class="bg-orange-500 dark:bg-orange-600 text-white px-6 py-3 rounded-lg hover:bg-orange-600 dark:hover:bg-orange-700 transition-colors"
+                  >
+                    Essentially uncha
+                  </button>
+                </div>
+              </div>
+
+              <div class="space-y-6">
+                <div
+                  class="bg-gray-200 dark:bg-gray-700 h-[300px] rounded-lg w-full transition-colors"
+                >
+                  <picture>
+                    <!-- Desktop screens -->
+                    <source
+                      media="(min-width: 1024px)"
+                      srcset="../assets/computer-1280.webp"
+                      sizes="1280px"
+                    />
+
+                    <!-- Tablet screens -->
+                    <source
+                      media="(min-width: 768px)"
+                      srcset="../assets/computer-960.webp"
+                      sizes="960px"
+                    />
+
+                    <!-- Mobile screens -->
+                    <source
+                      media="(max-width: 767px)"
+                      srcset="../assets/computer-640.webp"
+                      sizes="640px"
+                    />
+
+                    <!-- Fallback image -->
+                    <img
+                      src="../assets/computer-960.webp"
+                      alt="Stairs"
+                      class="w-full h-full object-cover rounded-lg"
+                      loading="lazy"
+                    />
+                  </picture>
+                </div>
+
+                <div class="space-y-4">
+                  <h3
+                    class="text-blue-900 dark:text-blue-300 text-2xl font-bold transition-colors"
+                  >
+                    Lorem Ipsum Lorem <br />Ipsum Lorem
+                  </h3>
+
+                  <p
+                    class="text-gray-700 dark:text-gray-300 leading-relaxed transition-colors"
+                  >
+                    Lorem Ipsum is simply dummy text of the printing and
+                    typesetting industry. Lorem Ipsum has been the indus try's
+                    standard dummy text ever since the 1500s, when an unknown
+                    printer took a galley of type and s rambled it to make a
+                    type specimen book. It has surv ived not only five
+                    centuries, but also the leap into electronic typesetting
+                    remaining essentially unchanged.
+                  </p>
+
+                  <button
+                    class="bg-orange-500 dark:bg-orange-600 text-white px-6 py-3 rounded-lg hover:bg-orange-600 dark:hover:bg-orange-700 transition-colors"
+                  >
+                    Essentially uncha
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!--cards end -->
+
+        <!-- carousel -->
+        <section
+          class="py-16 bg-white dark:bg-gray-700 transition-colors duration-200"
+        >
+          <div class="w-[80%] mx-auto relative">
+            <!-- Carousel Container -->
+            <div class="relative overflow-hidden" dir="ltr" id="carousel">
+              <!-- Slides Container -->
+              <div
+                class="flex transition-transform duration-500 ease-in-out"
+                id="slides-container"
+              >
+                <!-- Slide 1 -->
+                <div class="w-full flex-shrink-0">
+                  <picture>
+                    <!-- Desktop screens -->
+                    <source
+                      media="(min-width: 1024px)"
+                      srcset="
+                        https://img.freepik.com/free-photo/santa-maddalena-dolomites-rangesouth-tyrol_661209-237.jpg?w=1200
+                      "
+                      sizes="1200px"
+                    />
+
+                    <!-- Tablet screens -->
+                    <source
+                      media="(min-width: 768px)"
+                      srcset="
+                        https://img.freepik.com/free-photo/santa-maddalena-dolomites-rangesouth-tyrol_661209-237.jpg?w=800
+                      "
+                      sizes="800px"
+                    />
+
+                    <!-- Mobile screens -->
+                    <source
+                      media="(max-width: 767px)"
+                      srcset="
+                        https://img.freepik.com/free-photo/santa-maddalena-dolomites-rangesouth-tyrol_661209-237.jpg?w=400
+                      "
+                      sizes="400px"
+                    />
+
+                    <!-- Fallback image -->
+                    <img
+                      src="https://img.freepik.com/free-photo/santa-maddalena-dolomites-rangesouth-tyrol_661209-237.jpg?w=800"
+                      alt="Mountain landscape"
+                      class="w-full h-[400px] object-cover rounded-lg"
+                      loading="lazy"
+                    />
+                  </picture>
+                </div>
+
+                <div class="w-full flex-shrink-0">
+                  <picture>
+                    <!-- Desktop screens -->
+                    <source
+                      media="(min-width: 1024px)"
+                      srcset="
+                        https://img.freepik.com/free-photo/bright-sunset-rapeseed-field_1127-3579.jpg?t=st=1739201508~exp=1739205108~hmac=7309547e414e9919662db963bc6f709bda4e7d8a3e5507f1ed65ab24932d2405&w=1200
+                      "
+                      sizes="1200px"
+                    />
+
+                    <!-- Tablet screens -->
+                    <source
+                      media="(min-width: 768px)"
+                      srcset="
+                        https://img.freepik.com/free-photo/bright-sunset-rapeseed-field_1127-3579.jpg?t=st=1739201508~exp=1739205108~hmac=7309547e414e9919662db963bc6f709bda4e7d8a3e5507f1ed65ab24932d2405&w=800
+                      "
+                      sizes="800px"
+                    />
+
+                    <!-- Mobile screens -->
+                    <source
+                      media="(max-width: 767px)"
+                      srcset="
+                        https://img.freepik.com/free-photo/bright-sunset-rapeseed-field_1127-3579.jpg?t=st=1739201508~exp=1739205108~hmac=7309547e414e9919662db963bc6f709bda4e7d8a3e5507f1ed65ab24932d2405&w=400
+                      "
+                      sizes="400px"
+                    />
+
+                    <!-- Fallback image -->
+                    <img
+                      src="https://img.freepik.com/free-photo/bright-sunset-rapeseed-field_1127-3579.jpg?t=st=1739201508~exp=1739205108~hmac=7309547e414e9919662db963bc6f709bda4e7d8a3e5507f1ed65ab24932d2405&w=800"
+                      alt="Mountain landscape"
+                      class="w-full h-[400px] object-cover rounded-lg"
+                      loading="lazy"
+                    />
+                  </picture>
+                </div>
+                <!-- Slide 3 -->
+
+                <div class="w-full flex-shrink-0">
+                  <picture>
+                    <!-- Desktop screens -->
+                    <source
+                      media="(min-width: 1024px)"
+                      srcset="
+                        https://img.freepik.com/free-photo/cascade-boat-clean-china-natural-rural_1417-1356.jpg?t=st=1739201607~exp=1739205207~hmac=6e4e28f7d18ce7b29529b50a97d53919241fe14cda915539516a7499469184f9&w=1200
+                      "
+                      sizes="1200px"
+                    />
+
+                    <!-- Tablet screens -->
+                    <source
+                      media="(min-width: 768px)"
+                      srcset="
+                        https://img.freepik.com/free-photo/cascade-boat-clean-china-natural-rural_1417-1356.jpg?t=st=1739201607~exp=1739205207~hmac=6e4e28f7d18ce7b29529b50a97d53919241fe14cda915539516a7499469184f9&w=800
+                      "
+                      sizes="800px"
+                    />
+
+                    <!-- Mobile screens -->
+                    <source
+                      media="(max-width: 767px)"
+                      srcset="
+                        https://img.freepik.com/free-photo/cascade-boat-clean-china-natural-rural_1417-1356.jpg?t=st=1739201607~exp=1739205207~hmac=6e4e28f7d18ce7b29529b50a97d53919241fe14cda915539516a7499469184f9&w=400
+                      "
+                      sizes="400px"
+                    />
+
+                    <!-- Fallback image -->
+                    <img
+                      src="https://img.freepik.com/free-photo/cascade-boat-clean-china-natural-rural_1417-1356.jpg?t=st=1739201607~exp=1739205207~hmac=6e4e28f7d18ce7b29529b50a97d53919241fe14cda915539516a7499469184f9&w=800"
+                      alt="Mountain landscape"
+                      class="w-full h-[400px] object-cover rounded-lg"
+                      loading="lazy"
+                    />
+                  </picture>
+                </div>
+
+                <!-- Slide 4 -->
+
+                <div class="w-full flex-shrink-0">
+                  <picture>
+                    <!-- Desktop screens -->
+                    <source
+                      media="(min-width: 1024px)"
+                      srcset="
+                        https://img.freepik.com/free-photo/boatman-punting-boat-river-arashiyama-autumn-season-along-river-kyoto-japan_335224-22.jpg?t=st=1739201895~exp=1739205495~hmac=87b182964113cbfaafc34a85f3b80aede6fb16587dfb93d5436afb2a5d7b0fa9&w=1200
+                      "
+                      sizes="1200px"
+                    />
+
+                    <!-- Tablet screens -->
+                    <source
+                      media="(min-width: 768px)"
+                      srcset="
+                        https://img.freepik.com/free-photo/boatman-punting-boat-river-arashiyama-autumn-season-along-river-kyoto-japan_335224-22.jpg?t=st=1739201895~exp=1739205495~hmac=87b182964113cbfaafc34a85f3b80aede6fb16587dfb93d5436afb2a5d7b0fa9&w=800
+                      "
+                      sizes="800px"
+                    />
+
+                    <!-- Mobile screens -->
+                    <source
+                      media="(max-width: 767px)"
+                      srcset="
+                        https://img.freepik.com/free-photo/boatman-punting-boat-river-arashiyama-autumn-season-along-river-kyoto-japan_335224-22.jpg?t=st=1739201895~exp=1739205495~hmac=87b182964113cbfaafc34a85f3b80aede6fb16587dfb93d5436afb2a5d7b0fa9&w=400
+                      "
+                      sizes="400px"
+                    />
+
+                    <!-- Fallback image -->
+                    <img
+                      src="https://img.freepik.com/free-photo/boatman-punting-boat-river-arashiyama-autumn-season-along-river-kyoto-japan_335224-22.jpg?t=st=1739201895~exp=1739205495~hmac=87b182964113cbfaafc34a85f3b80aede6fb16587dfb93d5436afb2a5d7b0fa9&w=800"
+                      alt="Mountain landscape"
+                      class="w-full h-[400px] object-cover rounded-lg"
+                      loading="lazy"
+                    />
+                  </picture>
+                </div>
+              </div>
+
+              <!-- Navigation Arrows -->
+              <button
+                class="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 dark:bg-gray-700/80 hover:bg-white dark:hover:bg-gray-700 p-2 rounded-full shadow-lg transition-all"
+                id="prev-button"
+                aria-label="Previous slide"
+              >
+                <svg
+                  class="w-6 h-6 text-blue-900 dark:text-blue-300"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 19l-7-7 7-7"
+                  />
+                </svg>
+              </button>
+              <button
+                class="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 dark:bg-gray-700/80 hover:bg-white dark:hover:bg-gray-700 p-2 rounded-full shadow-lg transition-all"
+                id="next-button"
+                aria-label="Next slide"
+              >
+                <svg
+                  class="w-6 h-6 text-blue-900 dark:text-blue-300"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
+              </button>
+
+              <!-- Dots Navigation -->
+              <div
+                class="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2"
+                id="dots-container"
+              >
+                <!-- Dots will be added by JavaScript -->
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- carousel end -->
+
+        <!-- cards second -->
+        <section
+          class="py-16 w-full flex flex-col items-center justify-center bg-white dark:bg-gray-700 transition-colors duration-200"
+        >
           <h2
             class="text-blue-900 dark:text-blue-300 text-4xl font-bold text-center mb-16 transition-colors"
           >
-            Lorem Ipsum Is
+            Lorem Ipsun
           </h2>
 
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-7xl mx-auto">
-            <div class="space-y-6">
-              <div
-                class="bg-gray-200 dark:bg-gray-700 h-[300px] rounded-lg w-full transition-colors"
+          <div class="container w-[80%] mx-auto px-4">
+            <!-- First Row -->
+            <div
+              class="cards1 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-6"
+            ></div>
+            <!-- Second Row -->
+            <div
+              class="cards2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mt-16 mb-6"
+            ></div>
+            <!-- Bottom Button -->
+            <div class="text-center">
+              <button
+                class="bg-orange-500 dark:bg-orange-600 text-white px-8 py-3 rounded-lg hover:bg-orange-600 dark:hover:bg-orange-700 transition-colors"
               >
-                <img
-                  src="https://cdn.pixabay.com/photo/2017/11/27/21/31/computer-2982270_1280.jpg"
-                  alt=""
-                  class="w-full h-full object-cover rounded-lg"
-                />
-              </div>
-
-              <div class="space-y-4">
-                <h3
-                  class="text-blue-900 dark:text-blue-300 text-2xl font-bold transition-colors"
-                >
-                  Lorem Ipsum Lorem <br />Ipsum Lorem
-                </h3>
-
-                <p
-                  class="text-gray-700 dark:text-gray-300 leading-relaxed transition-colors"
-                >
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the indus try's
-                  standard dummy text ever since the 1500s, when an unknown
-                  printer took a galley of type and s rambled it to make a type
-                  specimen book. It has surv ived not only five centuries, but
-                  also the leap into electronic typesetting remaining
-                  essentially unchanged.
-                </p>
-
-                <button
-                  class="bg-orange-500 dark:bg-orange-600 text-white px-6 py-3 rounded-lg hover:bg-orange-600 dark:hover:bg-orange-700 transition-colors"
-                >
-                  Essentially uncha
-                </button>
-              </div>
-            </div>
-
-            <div class="space-y-6">
-              <div
-                class="bg-gray-200 dark:bg-gray-700 h-[300px] rounded-lg w-full transition-colors"
-              >
-                <img
-                  src="https://cdn.pixabay.com/photo/2017/11/27/21/31/computer-2982270_1280.jpg"
-                  alt=""
-                  class="w-full h-full object-cover rounded-lg"
-                />
-              </div>
-
-              <div class="space-y-4">
-                <h3
-                  class="text-blue-900 dark:text-blue-300 text-2xl font-bold transition-colors"
-                >
-                  Lorem Ipsum Lorem <br />Ipsum Lorem
-                </h3>
-
-                <p
-                  class="text-gray-700 dark:text-gray-300 leading-relaxed transition-colors"
-                >
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the indus try's
-                  standard dummy text ever since the 1500s, when an unknown
-                  printer took a galley of type and s rambled it to make a type
-                  specimen book. It has surv ived not only five centuries, but
-                  also the leap into electronic typesetting remaining
-                  essentially unchanged.
-                </p>
-
-                <button
-                  class="bg-orange-500 dark:bg-orange-600 text-white px-6 py-3 rounded-lg hover:bg-orange-600 dark:hover:bg-orange-700 transition-colors"
-                >
-                  Essentially uncha
-                </button>
-              </div>
+                lorem ipsum is
+              </button>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+        <!-- cards second end -->
 
-      <section
-        class="py-16 bg-white dark:bg-gray-800 transition-colors duration-200"
-      >
-        <div class="w-[80%] mx-auto relative">
-          <!-- Carousel Container -->
-          <div class="relative overflow-hidden" id="carousel">
-            <!-- Slides Container -->
-            <div
-              class="flex transition-transform duration-500 ease-in-out"
-              id="slides-container"
-            >
-              <!-- Slide 1 -->
-              <div class="w-full flex-shrink-0">
-                <picture>
-                  <!-- Desktop screens -->
-                  <source
-                    media="(min-width: 1024px)"
-                    srcset="
-                      https://img.freepik.com/free-photo/santa-maddalena-dolomites-rangesouth-tyrol_661209-237.jpg?w=1200
-                    "
-                    sizes="1200px"
-                  />
-
-                  <!-- Tablet screens -->
-                  <source
-                    media="(min-width: 768px)"
-                    srcset="
-                      https://img.freepik.com/free-photo/santa-maddalena-dolomites-rangesouth-tyrol_661209-237.jpg?w=800
-                    "
-                    sizes="800px"
-                  />
-
-                  <!-- Mobile screens -->
-                  <source
-                    media="(max-width: 767px)"
-                    srcset="
-                      https://img.freepik.com/free-photo/santa-maddalena-dolomites-rangesouth-tyrol_661209-237.jpg?w=400
-                    "
-                    sizes="400px"
-                  />
-
-                  <!-- Fallback image -->
-                  <img
-                    src="https://img.freepik.com/free-photo/santa-maddalena-dolomites-rangesouth-tyrol_661209-237.jpg?w=800"
-                    alt="Mountain landscape"
-                    class="w-full h-[400px] object-cover rounded-lg"
-                    loading="lazy"
-                  />
-                </picture>
-              </div>
-
-              <div class="w-full flex-shrink-0">
-                <picture>
-                  <!-- Desktop screens -->
-                  <source
-                    media="(min-width: 1024px)"
-                    srcset="
-                      https://img.freepik.com/free-photo/bright-sunset-rapeseed-field_1127-3579.jpg?t=st=1739201508~exp=1739205108~hmac=7309547e414e9919662db963bc6f709bda4e7d8a3e5507f1ed65ab24932d2405&w=1200
-                    "
-                    sizes="1200px"
-                  />
-
-                  <!-- Tablet screens -->
-                  <source
-                    media="(min-width: 768px)"
-                    srcset="
-                      https://img.freepik.com/free-photo/bright-sunset-rapeseed-field_1127-3579.jpg?t=st=1739201508~exp=1739205108~hmac=7309547e414e9919662db963bc6f709bda4e7d8a3e5507f1ed65ab24932d2405&w=800
-                    "
-                    sizes="800px"
-                  />
-
-                  <!-- Mobile screens -->
-                  <source
-                    media="(max-width: 767px)"
-                    srcset="
-                      https://img.freepik.com/free-photo/bright-sunset-rapeseed-field_1127-3579.jpg?t=st=1739201508~exp=1739205108~hmac=7309547e414e9919662db963bc6f709bda4e7d8a3e5507f1ed65ab24932d2405&w=400
-                    "
-                    sizes="400px"
-                  />
-
-                  <!-- Fallback image -->
-                  <img
-                    src="https://img.freepik.com/free-photo/bright-sunset-rapeseed-field_1127-3579.jpg?t=st=1739201508~exp=1739205108~hmac=7309547e414e9919662db963bc6f709bda4e7d8a3e5507f1ed65ab24932d2405&w=800"
-                    alt="Mountain landscape"
-                    class="w-full h-[400px] object-cover rounded-lg"
-                    loading="lazy"
-                  />
-                </picture>
-              </div>
-              <!-- Slide 3 -->
-
-              <div class="w-full flex-shrink-0">
-                <picture>
-                  <!-- Desktop screens -->
-                  <source
-                    media="(min-width: 1024px)"
-                    srcset="
-                      https://img.freepik.com/free-photo/cascade-boat-clean-china-natural-rural_1417-1356.jpg?t=st=1739201607~exp=1739205207~hmac=6e4e28f7d18ce7b29529b50a97d53919241fe14cda915539516a7499469184f9&w=1200
-                    "
-                    sizes="1200px"
-                  />
-
-                  <!-- Tablet screens -->
-                  <source
-                    media="(min-width: 768px)"
-                    srcset="
-                      https://img.freepik.com/free-photo/cascade-boat-clean-china-natural-rural_1417-1356.jpg?t=st=1739201607~exp=1739205207~hmac=6e4e28f7d18ce7b29529b50a97d53919241fe14cda915539516a7499469184f9&w=800
-                    "
-                    sizes="800px"
-                  />
-
-                  <!-- Mobile screens -->
-                  <source
-                    media="(max-width: 767px)"
-                    srcset="
-                      https://img.freepik.com/free-photo/cascade-boat-clean-china-natural-rural_1417-1356.jpg?t=st=1739201607~exp=1739205207~hmac=6e4e28f7d18ce7b29529b50a97d53919241fe14cda915539516a7499469184f9&w=400
-                    "
-                    sizes="400px"
-                  />
-
-                  <!-- Fallback image -->
-                  <img
-                    src="https://img.freepik.com/free-photo/cascade-boat-clean-china-natural-rural_1417-1356.jpg?t=st=1739201607~exp=1739205207~hmac=6e4e28f7d18ce7b29529b50a97d53919241fe14cda915539516a7499469184f9&w=800"
-                    alt="Mountain landscape"
-                    class="w-full h-[400px] object-cover rounded-lg"
-                    loading="lazy"
-                  />
-                </picture>
-              </div>
-
-              <!-- Slide 4 -->
-
-              <div class="w-full flex-shrink-0">
-                <picture>
-                  <!-- Desktop screens -->
-                  <source
-                    media="(min-width: 1024px)"
-                    srcset="
-                      https://img.freepik.com/free-photo/boatman-punting-boat-river-arashiyama-autumn-season-along-river-kyoto-japan_335224-22.jpg?t=st=1739201895~exp=1739205495~hmac=87b182964113cbfaafc34a85f3b80aede6fb16587dfb93d5436afb2a5d7b0fa9&w=1200
-                    "
-                    sizes="1200px"
-                  />
-
-                  <!-- Tablet screens -->
-                  <source
-                    media="(min-width: 768px)"
-                    srcset="
-                      https://img.freepik.com/free-photo/boatman-punting-boat-river-arashiyama-autumn-season-along-river-kyoto-japan_335224-22.jpg?t=st=1739201895~exp=1739205495~hmac=87b182964113cbfaafc34a85f3b80aede6fb16587dfb93d5436afb2a5d7b0fa9&w=800
-                    "
-                    sizes="800px"
-                  />
-
-                  <!-- Mobile screens -->
-                  <source
-                    media="(max-width: 767px)"
-                    srcset="
-                      https://img.freepik.com/free-photo/boatman-punting-boat-river-arashiyama-autumn-season-along-river-kyoto-japan_335224-22.jpg?t=st=1739201895~exp=1739205495~hmac=87b182964113cbfaafc34a85f3b80aede6fb16587dfb93d5436afb2a5d7b0fa9&w=400
-                    "
-                    sizes="400px"
-                  />
-
-                  <!-- Fallback image -->
-                  <img
-                    src="https://img.freepik.com/free-photo/boatman-punting-boat-river-arashiyama-autumn-season-along-river-kyoto-japan_335224-22.jpg?t=st=1739201895~exp=1739205495~hmac=87b182964113cbfaafc34a85f3b80aede6fb16587dfb93d5436afb2a5d7b0fa9&w=800"
-                    alt="Mountain landscape"
-                    class="w-full h-[400px] object-cover rounded-lg"
-                    loading="lazy"
-                  />
-                </picture>
-              </div>
-            </div>
-
-            <!-- Navigation Arrows -->
-            <button
-              class="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 dark:bg-gray-700/80 hover:bg-white dark:hover:bg-gray-700 p-2 rounded-full shadow-lg transition-all"
-              id="prev-button"
-              aria-label="Previous slide"
-            >
-              <svg
-                class="w-6 h-6 text-blue-900 dark:text-blue-300"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M15 19l-7-7 7-7"
-                />
-              </svg>
-            </button>
-            <button
-              class="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 dark:bg-gray-700/80 hover:bg-white dark:hover:bg-gray-700 p-2 rounded-full shadow-lg transition-all"
-              id="next-button"
-              aria-label="Next slide"
-            >
-              <svg
-                class="w-6 h-6 text-blue-900 dark:text-blue-300"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M9 5l7 7-7 7"
-                />
-              </svg>
-            </button>
-
-            <!-- Dots Navigation -->
-            <div
-              class="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2"
-              id="dots-container"
-            >
-              <!-- Dots will be added by JavaScript -->
-            </div>
-          </div>
-        </div>
-      </section>
-      <script src="../js/car.js"></script>
-
-      <section
-        class="py-16 w-full flex flex-col items-center justify-center bg-white dark:bg-gray-800 transition-colors duration-200"
-      >
-        <h2
-          class="text-blue-900 dark:text-blue-300 text-4xl font-bold text-center mb-16 transition-colors"
+        <!-- more-->
+        <section
+          class="bg-blue-50 dark:bg-gray-800 w-full transition-colors duration-200"
         >
-          Lorem Ipsun
-        </h2>
-
-        <div class="container w-[80%] mx-auto px-4">
-          <!-- Grid Container -->
-          <div
-            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-6"
-          >
-            <!-- Card 1 -->
-            <div
-              class="group bg-blue-50 dark:bg-gray-700 h-[430px] overflow-hidden transition-all duration-300 hover:bg-blue-900 dark:hover:bg-blue-900"
-            >
-              <!-- Image Container -->
-              <div class="h-48 overflow-hidden">
-                <img
-                  src="https://cdn.pixabay.com/photo/2017/11/27/21/31/computer-2982270_1280.jpg"
-                  alt="Card image"
-                  class="w-full h-full object-cover"
-                />
-              </div>
-              <!-- Content -->
-              <div class="p-6">
-                <h3
-                  class="text-blue-900 dark:text-blue-300 group-hover:text-white text-xl font-bold mb-3"
-                >
-                  Lorem Ipsum
-                </h3>
-                <p
-                  class="text-gray-600 dark:text-gray-300 group-hover:text-blue-100 mb-4"
-                >
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                  standard.
-                </p>
-                <a
-                  href="#"
-                  class="text-blue-900 dark:text-blue-300 group-hover:text-white font-medium hover:underline"
-                  >Yours More
-                </a>
-              </div>
-            </div>
-            <div
-              class="group bg-blue-50 dark:bg-gray-700 h-[430px] overflow-hidden transition-all duration-300 hover:bg-blue-900 dark:hover:bg-blue-900"
-            >
-              <!-- Image Container -->
-              <div class="h-48 overflow-hidden">
-                <img
-                  src="https://cdn.pixabay.com/photo/2017/11/27/21/31/computer-2982270_1280.jpg"
-                  alt="Card image"
-                  class="w-full h-full object-cover"
-                />
-              </div>
-              <!-- Content -->
-              <div class="p-6">
-                <h3
-                  class="text-blue-900 dark:text-blue-300 group-hover:text-white text-xl font-bold mb-3"
-                >
-                  Lorem Ipsum
-                </h3>
-                <p
-                  class="text-gray-600 dark:text-gray-300 group-hover:text-blue-100 mb-4"
-                >
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                  standard.
-                </p>
-                <a
-                  href="#"
-                  class="text-blue-900 dark:text-blue-300 group-hover:text-white font-medium hover:underline"
-                  >Yours More
-                </a>
-              </div>
-            </div>
-            <div
-              class="group bg-blue-50 dark:bg-gray-700 h-[430px] overflow-hidden transition-all duration-300 hover:bg-blue-900 dark:hover:bg-blue-900"
-            >
-              <!-- Image Container -->
-              <div class="h-48 overflow-hidden">
-                <img
-                  src="https://cdn.pixabay.com/photo/2017/11/27/21/31/computer-2982270_1280.jpg"
-                  alt="Card image"
-                  class="w-full h-full object-cover"
-                />
-              </div>
-              <!-- Content -->
-              <div class="p-6">
-                <h3
-                  class="text-blue-900 dark:text-blue-300 group-hover:text-white text-xl font-bold mb-3"
-                >
-                  Lorem Ipsum
-                </h3>
-                <p
-                  class="text-gray-600 dark:text-gray-300 group-hover:text-blue-100 mb-4"
-                >
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                  standard.
-                </p>
-                <a
-                  href="#"
-                  class="text-blue-900 dark:text-blue-300 group-hover:text-white font-medium hover:underline"
-                  >Yours More
-                </a>
-              </div>
-            </div>
-            <div
-              class="group bg-blue-50 dark:bg-gray-700 h-[430px] overflow-hidden transition-all duration-300 hover:bg-blue-900 dark:hover:bg-blue-900"
-            >
-              <!-- Image Container -->
-              <div class="h-48 overflow-hidden">
-                <img
-                  src="https://cdn.pixabay.com/photo/2017/11/27/21/31/computer-2982270_1280.jpg"
-                  alt="Card image"
-                  class="w-full h-full object-cover"
-                />
-              </div>
-              <!-- Content -->
-              <div class="p-6">
-                <h3
-                  class="text-blue-900 dark:text-blue-300 group-hover:text-white text-xl font-bold mb-3"
-                >
-                  Lorem Ipsum
-                </h3>
-                <p
-                  class="text-gray-600 dark:text-gray-300 group-hover:text-blue-100 mb-4"
-                >
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                  standard.
-                </p>
-                <a
-                  href="#"
-                  class="text-blue-900 dark:text-blue-300 group-hover:text-white font-medium hover:underline"
-                  >Yours More
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Second Row -->
-          <div
-            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mt-16 mb-6"
-          >
-            <div
-              class="group bg-blue-50 dark:bg-gray-700 h-[430px] overflow-hidden transition-all duration-300 hover:bg-blue-900 dark:hover:bg-blue-900"
-            >
-              <!-- Image Container -->
-              <div class="h-48 overflow-hidden">
-                <img
-                  src="https://cdn.pixabay.com/photo/2017/11/27/21/31/computer-2982270_1280.jpg"
-                  alt="Card image"
-                  class="w-full h-full object-cover"
-                />
-              </div>
-              <!-- Content -->
-              <div class="p-6">
-                <h3
-                  class="text-blue-900 dark:text-blue-300 group-hover:text-white text-xl font-bold mb-3"
-                >
-                  Lorem Ipsum
-                </h3>
-                <p
-                  class="text-gray-600 dark:text-gray-300 group-hover:text-blue-100 mb-4"
-                >
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                  standard.
-                </p>
-                <a
-                  href="#"
-                  class="text-blue-900 dark:text-blue-300 group-hover:text-white font-medium hover:underline"
-                  >Yours More
-                </a>
-              </div>
-            </div>
-            <div
-              class="group bg-blue-50 dark:bg-gray-700 h-[430px] overflow-hidden transition-all duration-300 hover:bg-blue-900 dark:hover:bg-blue-900"
-            >
-              <!-- Image Container -->
-              <div class="h-48 overflow-hidden">
-                <img
-                  src="https://cdn.pixabay.com/photo/2017/11/27/21/31/computer-2982270_1280.jpg"
-                  alt="Card image"
-                  class="w-full h-full object-cover"
-                />
-              </div>
-              <!-- Content -->
-              <div class="p-6">
-                <h3
-                  class="text-blue-900 dark:text-blue-300 group-hover:text-white text-xl font-bold mb-3"
-                >
-                  Lorem Ipsum
-                </h3>
-                <p
-                  class="text-gray-600 dark:text-gray-300 group-hover:text-blue-100 mb-4"
-                >
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                  standard.
-                </p>
-                <a
-                  href="#"
-                  class="text-blue-900 dark:text-blue-300 group-hover:text-white font-medium hover:underline"
-                  >Yours More
-                </a>
-              </div>
-            </div>
-            <div
-              class="group bg-blue-50 dark:bg-gray-700 h-[430px] overflow-hidden transition-all duration-300 hover:bg-blue-900 dark:hover:bg-blue-900"
-            >
-              <!-- Image Container -->
-              <div class="h-48 overflow-hidden">
-                <img
-                  src="https://cdn.pixabay.com/photo/2017/11/27/21/31/computer-2982270_1280.jpg"
-                  alt="Card image"
-                  class="w-full h-full object-cover"
-                />
-              </div>
-              <!-- Content -->
-              <div class="p-6">
-                <h3
-                  class="text-blue-900 dark:text-blue-300 group-hover:text-white text-xl font-bold mb-3"
-                >
-                  Lorem Ipsum
-                </h3>
-                <p
-                  class="text-gray-600 dark:text-gray-300 group-hover:text-blue-100 mb-4"
-                >
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                  standard.
-                </p>
-                <a
-                  href="#"
-                  class="text-blue-900 dark:text-blue-300 group-hover:text-white font-medium hover:underline"
-                  >Yours More
-                </a>
-              </div>
-            </div>
-            <div
-              class="group bg-blue-50 dark:bg-gray-700 h-[430px] overflow-hidden transition-all duration-300 hover:bg-blue-900 dark:hover:bg-blue-900"
-            >
-              <!-- Image Container -->
-              <div class="h-48 overflow-hidden">
-                <img
-                  src="https://cdn.pixabay.com/photo/2017/11/27/21/31/computer-2982270_1280.jpg"
-                  alt="Card image"
-                  class="w-full h-full object-cover"
-                />
-              </div>
-              <!-- Content -->
-              <div class="p-6">
-                <h3
-                  class="text-blue-900 dark:text-blue-300 group-hover:text-white text-xl font-bold mb-3"
-                >
-                  Lorem Ipsum
-                </h3>
-                <p
-                  class="text-gray-600 dark:text-gray-300 group-hover:text-blue-100 mb-4"
-                >
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                  standard.
-                </p>
-                <a
-                  href="#"
-                  class="text-blue-900 dark:text-blue-300 group-hover:text-white font-medium hover:underline"
-                  >Yours More
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Bottom Button -->
-          <div class="text-center">
-            <button
-              class="bg-orange-500 dark:bg-orange-600 text-white px-8 py-3 rounded-lg hover:bg-orange-600 dark:hover:bg-orange-700 transition-colors"
-            >
-              lorem ipsum is
-            </button>
-          </div>
-        </div>
-      </section>
-      <!-- cards second end -->
-
-      <!--  -->
-
-      <section
-        class="bg-blue-50 dark:bg-gray-800 w-full transition-colors duration-200"
-      >
-        <div class="max-w-[1920px] w-[80%] mx-auto">
-          <div class="flex flex-col lg:flex-row">
-            <!-- Left Content (2/3 width) -->
-            <div class="w-full lg:w-2/3 px-4 lg:px-16 py-12 lg:py-24">
-              <div class="max-w-3xl">
-                <h2
-                  class="text-blue-900 dark:text-blue-300 text-3xl lg:text-4xl xl:text-5xl font-bold leading-tight mb-8 transition-colors"
-                >
-                  Lorem Ipsum Is Simply Of <br />
-                  Text Of The Printing And
-                </h2>
-
-                <div
-                  class="space-y-6 text-gray-700 dark:text-gray-300 text-base lg:text-lg leading-relaxed transition-colors"
-                >
-                  <p>
-                    Lorem Ipsum is simply dummy text of the printing and
-                    typesetting industry. Lorem Ipsum has been the industry's
-                    standard dummy text ever since the 1500 when an unknown
-                    printer took a galley of type and scrambled it to make a
-                    type specimen book. It has survived not only five centuries,
-                    but also.
-                  </p>
-                  <p>
-                    Lorem Ipsum is simply dummy text of the printing and
-                    typesetting industry. Lorem Ipsum has been the industry's
-                    standard dummy text ever since the 1500 when an unknown
-                    printer took a galley of type and scrambled it to make a
-                    type specimen book. It has survived not only five centuries,
-                    but also.Lorem Ipsum is simply dummy text of the printing
-                    and typesetting industry.
-                  </p>
-                  <p>
-                    Lorem Ipsum has been the industry's standard dummy text ever
-                    since the 1500s,
-                  </p>
-                </div>
-
-                <button
-                  class="mt-8 bg-orange-500 dark:bg-orange-600 text-white px-8 py-3 rounded-lg hover:bg-orange-600 dark:hover:bg-orange-700 transition-colors"
-                >
-                  Simpli Us
-                </button>
-              </div>
-            </div>
-
-            <!-- Right Content (1/3 width) -->
-            <div class="w-full lg:w-1/3 p-8 mt-">
-              <div class="relative max-w-md mx-auto">
-                <div
-                  class="aspect-[3/4] w-full relative bg-gray-300 dark:bg-gray-700 transition-colors"
-                >
-                  <div
-                    class="absolute inset-3 border-2 border-white dark:border-gray-600 z-10 transition-colors"
-                  ></div>
-                  <img
-                    src="https://cdn.pixabay.com/photo/2021/03/29/12/16/stairs-6133971_1280.jpg"
-                    alt="Featured image"
-                    class="w-full h-full object-cover"
-                  />
-                  <div
-                    class="bg-blue-900 dark:bg-blue-800 text-white p-4 absolute bottom-0 left-0 right-0 transition-colors"
+          <div class="max-w-[1920px] w-[80%] mx-auto">
+            <div class="flex flex-col lg:flex-row">
+              <!-- Left Content (2/3 width) -->
+              <div class="w-full lg:w-2/3 px-4 lg:px-16 py-12 lg:py-24">
+                <div class="max-w-3xl">
+                  <h2
+                    class="text-blue-900 dark:text-blue-300 text-3xl lg:text-4xl xl:text-5xl font-bold leading-tight mb-8 transition-colors"
                   >
-                    <div class="text-center">
-                      <h3 class="text-xl font-bold mb-2">Lorem Ipsum</h3>
-                      <p class="text-sm">Lorem Ipsum Has Been In Industry</p>
+                    Lorem Ipsum Is Simply Of <br />
+                    Text Of The Printing And
+                  </h2>
+
+                  <div
+                    class="space-y-6 text-gray-700 dark:text-gray-300 text-base lg:text-lg leading-relaxed transition-colors"
+                  >
+                    <p>
+                      Lorem Ipsum is simply dummy text of the printing and
+                      typesetting industry. Lorem Ipsum has been the industry's
+                      standard dummy text ever since the 1500 when an unknown
+                      printer took a galley of type and scrambled it to make a
+                      type specimen book. It has survived not only five
+                      centuries, but also.
+                    </p>
+                    <p>
+                      Lorem Ipsum is simply dummy text of the printing and
+                      typesetting industry. Lorem Ipsum has been the industry's
+                      standard dummy text ever since the 1500 when an unknown
+                      printer took a galley of type and scrambled it to make a
+                      type specimen book. It has survived not only five
+                      centuries, but also.Lorem Ipsum is simply dummy text of
+                      the printing and typesetting industry.
+                    </p>
+                    <p>
+                      Lorem Ipsum has been the industry's standard dummy text
+                      ever since the 1500s,
+                    </p>
+                  </div>
+
+                  <button
+                    class="mt-8 bg-orange-500 dark:bg-orange-600 text-white px-8 py-3 rounded-lg hover:bg-orange-600 dark:hover:bg-orange-700 transition-colors"
+                  >
+                    Simpli Us
+                  </button>
+                </div>
+              </div>
+
+              <!-- Right Content (1/3 width) -->
+              <div class="w-full lg:w-1/3 p-8 mt-">
+                <div class="relative max-w-md mx-auto">
+                  <div
+                    class="aspect-[3/4] w-full relative bg-gray-300 dark:bg-gray-700 transition-colors"
+                  >
+                    <div
+                      class="absolute inset-3 border-2 border-white dark:border-gray-600 z-10 transition-colors"
+                    ></div>
+                    <picture>
+                      <!-- Desktop screens -->
+                      <source
+                        media="(min-width: 1024px)"
+                        srcset="../assets/stairs-1280.webp"
+                        sizes="1280px"
+                      />
+
+                      <!-- Tablet screens -->
+                      <source
+                        media="(min-width: 768px)"
+                        srcset="../assets/stairs-960.webp"
+                        sizes="960px"
+                      />
+
+                      <!-- Mobile screens -->
+                      <source
+                        media="(max-width: 767px)"
+                        srcset="../assets/stairs-640.webp"
+                        sizes="640px"
+                      />
+
+                      <!-- Fallback image -->
+                      <img
+                        src="../assets/stairs-960.webp"
+                        alt="Stairs"
+                        class="w-full h-full object-cover"
+                        loading="lazy"
+                      />
+                    </picture>
+
+                    <div
+                      class="bg-blue-900 dark:bg-blue-800 text-white p-4 absolute bottom-0 left-0 right-0 transition-colors"
+                    >
+                      <div class="text-center">
+                        <h3 class="text-xl font-bold mb-2">Lorem Ipsum</h3>
+                        <p class="text-sm">Lorem Ipsum Has Been In Industry</p>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+        <!-- more end -->
 
-      <!-- Newsletter Section -->
-      <section
-        class="bg-white dark:bg-gray-800 w-full py-16 transition-colors duration-200"
-      >
-        <div class="container mx-auto px-4">
-          <div class="max-w-4xl mx-auto text-center">
-            <h2
-              class="text-blue-900 dark:text-blue-300 text-4xl font-bold mb-6 transition-colors"
-            >
-              Subscribe to Our Newsletter
-            </h2>
-            <p class="text-gray-700 dark:text-gray-300 mb-8 transition-colors">
-              Stay updated with our latest news and special offers
-            </p>
-
-            <div
-              class="flex flex-col md:flex-row gap-4 justify-center items-center"
-            >
-              <div class="w-full md:w-1/2">
-                <input
-                  type="email"
-                  class="w-full px-6 py-3 bg-white dark:bg-gray-700 rounded-lg border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:text-white transition-colors"
-                  placeholder="Enter your email address"
-                />
-              </div>
-              <button
-                class="w-full md:w-auto bg-orange-500 dark:bg-orange-600 text-white px-8 py-3 rounded-lg hover:bg-orange-600 dark:hover:bg-orange-700 transition-colors whitespace-nowrap"
+        <!-- Newsletter Section -->
+        <section
+          class="bg-white dark:bg-gray-700 w-full py-16 transition-colors duration-200"
+        >
+          <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center">
+              <h2
+                class="text-blue-900 dark:text-blue-300 text-4xl font-bold mb-6 transition-colors"
               >
-                Subscribe Now
-              </button>
-            </div>
+                Subscribe to Our Newsletter
+              </h2>
+              <p
+                class="text-gray-700 dark:text-gray-300 mb-8 transition-colors"
+              >
+                Stay updated with our latest news and special offers
+              </p>
 
-            <p
-              class="text-gray-500 dark:text-gray-400 text-sm mt-4 transition-colors"
-            >
-              By subscribing you agree to receive our promotional marketing
-              materials
-            </p>
-          </div>
-        </div>
-      </section>
-      <!-- Section with Show More -->
-      <section class="py-16 w-full bg-white dark:bg-gray-800">
-        <div class="container mx-auto px-4">
-          <!-- Initial content -->
-          <div
-            id="contentContainer"
-            class="space-y-6 md:max-w-[60%] flex flex-col items-center justify-center mx-auto"
-          >
-            <p class="text-gray-700 mx-auto text-lg dark:text-gray-300">
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s.
-            </p>
-          </div>
-
-          <!-- Show More Button -->
-          <div class="text-center mt-8">
-            <button
-              id="showMoreBtn"
-              class="bg-orange-500 text-white px-8 py-3 rounded-lg hover:bg-orange-600"
-            >
-              Show More
-            </button>
-          </div>
-        </div>
-      </section>
-      <script src="../js/show-more.js"></script>
-      <!-- Contact Form Section -->
-      <section
-        class="bg-blue-50 dark:bg-gray-800 py-16 w-full transition-colors duration-200"
-      >
-        <div class="container mx-auto px-4">
-          <div class="max-w-4xl mx-auto">
-            <h2
-              class="text-blue-900 dark:text-blue-300 text-4xl font-bold text-center mb-12 transition-colors"
-            >
-              Contact Us
-            </h2>
-
-            <div
-              class="bg-white dark:bg-gray-700 p-8 rounded-lg shadow-lg transition-colors"
-            >
-              <form class="space-y-6" id="contactForm" novalidate>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <label
-                      class="block text-blue-900 dark:text-blue-300 font-medium mb-2 transition-colors"
-                      >First Name
-                    </label>
-                    <input
-                      type="text"
-                      class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
-                      name="firstName"
-                      required
-                      minlength="2"
-                    />
-                    <span
-                      class="hidden text-red-500 text-sm mt-1"
-                      data-error="firstName"
-                    ></span>
-                  </div>
-                  <div>
-                    <label
-                      class="block text-blue-900 dark:text-blue-300 font-medium mb-2 transition-colors"
-                      >Last Name
-                    </label>
-                    <input
-                      type="text"
-                      class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
-                      name="lastName"
-                      required
-                      minlength="2"
-                    />
-                    <span
-                      class="hidden text-red-500 text-sm mt-1"
-                      data-error="lastName"
-                    ></span>
-                  </div>
-                </div>
-
-                <div>
-                  <label
-                    class="block text-blue-900 dark:text-blue-300 font-medium mb-2 transition-colors"
-                    >Email Address
-                  </label>
+              <div
+                class="flex flex-col md:flex-row gap-4 justify-center items-center"
+              >
+                <div class="w-full md:w-1/2">
                   <input
                     type="email"
-                    class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
-                    name="email"
-                    required
+                    class="w-full px-6 py-3 bg-white dark:bg-gray-700 rounded-lg border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:text-white transition-colors"
+                    placeholder="Enter your email address"
                   />
-                  <span
-                    class="hidden text-red-500 text-sm mt-1"
-                    data-error="email"
-                  ></span>
                 </div>
+                <button
+                  class="w-full md:w-auto bg-orange-500 dark:bg-orange-600 text-white px-8 py-3 rounded-lg hover:bg-orange-600 dark:hover:bg-orange-700 transition-colors whitespace-nowrap"
+                >
+                  Subscribe Now
+                </button>
+              </div>
 
-                <div>
-                  <label
-                    class="block text-blue-900 dark:text-blue-300 font-medium mb-2 transition-colors"
-                    >Subject
-                  </label>
-                  <div
-                    class="w-full px-4 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
-                  >
-                    <select
-                      class="w-full px-4 py-3 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white transition-colors"
-                      name="subject"
-                      required
-                    >
-                      <option value="" disabled selected>
-                        Select a subject
-                      </option>
-                      <option value="general">General Inquiry</option>
-                      <option value="support">Technical Support</option>
-                      <option value="billing">Billing Question</option>
-                      <option value="other">Other</option>
-                    </select>
-                    <span
-                      class="hidden text-red-500 text-sm mt-1"
-                      data-error="subject"
-                    ></span>
-                  </div>
-                </div>
-
-                <div>
-                  <label
-                    class="block text-blue-900 dark:text-blue-300 font-medium mb-2 transition-colors"
-                    >Message
-                  </label>
-                  <textarea
-                    rows="5"
-                    class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
-                    name="message"
-                    required
-                    minlength="10"
-                  >
-                  </textarea>
-                  <span
-                    class="hidden text-red-500 text-sm mt-1"
-                    data-error="message"
-                  ></span>
-                </div>
-
-                <div class="flex items-center">
-                  <input
-                    type="checkbox"
-                    id="terms"
-                    class="rounded border-gray-300 dark:border-gray-600 text-orange-500 focus:ring-orange-500 transition-colors"
-                    name="terms"
-                    required
-                  />
-
-                  <label
-                    for="terms"
-                    class="ml-2 text-gray-600 dark:text-gray-300 transition-colors"
-                    >I agree to the terms and conditions </label
-                  ><span
-                    class="hidden text-red-500 text-sm p-2 mt-1"
-                    data-error="terms"
-                  ></span>
-                </div>
-
-                <div class="text-center">
-                  <button
-                    type="submit"
-                    class="bg-orange-500 dark:bg-orange-600 text-white px-8 py-3 rounded-lg hover:bg-orange-600 dark:hover:bg-orange-700 transition-colors"
-                  >
-                    Send Message
-                  </button>
-                </div>
-                <div class="text-center">
-                  <p class="hidden text-green-500" id="successMessage">
-                    Message sent successfully!
-                  </p>
-                  <p class="hidden text-red-500" id="errorMessage">
-                    Please fix the errors above
-                  </p>
-                </div>
-              </form>
+              <p
+                class="text-gray-500 dark:text-gray-400 text-sm mt-4 transition-colors"
+              >
+                By subscribing you agree to receive our promotional marketing
+                materials
+              </p>
             </div>
           </div>
-        </div>
-      </section>
-      <script src="../js/contact-form.js"></script>
-      <!-- Footer -->
-      <!-- Sponsor Icons Carousel -->
-      <section class="py-16 w-full bg-white dark:bg-gray-800">
-        <div class="container mx-auto px-4">
-          <h2
-            class="text-blue-900 dark:text-blue-300 text-4xl font-bold text-center mb-12"
-          >
-            Our Technologies
-          </h2>
+        </section>
+        <!-- Newsletter Section End -->
 
-          <!-- Carousel Container -->
-          <div class="relative max-w-4xl mx-auto" dir="ltr">
-            <!-- Carousel Viewport -->
-            <div class="overflow-hidden">
-              <div
-                class="flex transition-transform duration-300"
-                id="carouselTrack"
+        <!-- Contact Form Section -->
+        <section
+          class="bg-blue-50 dark:bg-gray-800 py-16 w-full transition-colors duration-200"
+        >
+          <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+              <h2
+                class="text-blue-900 dark:text-blue-300 text-4xl font-bold text-center mb-12 transition-colors"
               >
-                <!-- Icons -->
-                <div class="flex gap-8 items-center">
-                  <img
-                    src="https://cdn-icons-png.flaticon.com/128/5968/5968292.png"
-                    alt="JavaScript"
-                    class="w-12 h-12 object-contain"
-                  />
-                  <img
-                    src="https://cdn-icons-png.flaticon.com/128/1126/1126012.png"
-                    alt="React"
-                    class="w-12 h-12 object-contain"
-                  />
-                  <img
-                    src="https://cdn-icons-png.flaticon.com/128/5968/5968381.png"
-                    alt="TypeScript"
-                    class="w-12 h-12 object-contain"
-                  />
-                  <img
-                    src="https://cdn-icons-png.flaticon.com/128/5968/5968322.png"
-                    alt="Node.js"
-                    class="w-12 h-12 object-contain"
-                  />
-                  <img
-                    src="https://cdn-icons-png.flaticon.com/128/5968/5968242.png"
-                    alt="CSS"
-                    class="w-12 h-12 object-contain"
-                  />
-                  <img
-                    src="https://cdn-icons-png.flaticon.com/128/174/174854.png"
-                    alt="HTML"
-                    class="w-12 h-12 object-contain"
-                  />
-                  <img
-                    src="https://cdn-icons-png.flaticon.com/128/5968/5968350.png"
-                    alt="Python"
-                    class="w-12 h-12 object-contain"
-                  />
-                  <img
-                    src="https://cdn-icons-png.flaticon.com/128/5968/5968332.png"
-                    alt="PHP"
-                    class="w-12 h-12 object-contain"
-                  />
-                  <img
-                    src="https://cdn-icons-png.flaticon.com/128/226/226777.png"
-                    alt="Java"
-                    class="w-12 h-12 object-contain"
-                  />
-                  <img
-                    src="https://cdn-icons-png.flaticon.com/128/6132/6132222.png"
-                    alt="C++"
-                    class="w-12 h-12 object-contain"
-                  />
+                Contact Us
+              </h2>
+
+              <div
+                class="bg-white dark:bg-gray-700 p-8 rounded-lg shadow-lg transition-colors"
+              >
+                <form class="space-y-6" id="contactForm" novalidate>
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <label
+                        class="block text-blue-900 dark:text-blue-300 font-medium mb-2 transition-colors"
+                        for="firstName"
+                        >First Name
+                      </label>
+                      <input
+                        type="text"
+                        class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                        name="firstName"
+                        id="firstName"
+                        required
+                        minlength="2"
+                      />
+                      <span
+                        class="hidden text-red-500 text-sm mt-1"
+                        data-error="firstName"
+                      ></span>
+                    </div>
+                    <div>
+                      <label
+                        class="block text-blue-900 dark:text-blue-300 font-medium mb-2 transition-colors"
+                        for="lastName"
+                        >Last Name
+                      </label>
+                      <input
+                        type="text"
+                        class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                        name="lastName"
+                        id="lastName"
+                        required
+                        minlength="2"
+                      />
+                      <span
+                        class="hidden text-red-500 text-sm mt-1"
+                        data-error="lastName"
+                      ></span>
+                    </div>
+                  </div>
+
+                  <div>
+                    <label
+                      class="block text-blue-900 dark:text-blue-300 font-medium mb-2 transition-colors"
+                      for="email"
+                      >Email Address
+                    </label>
+                    <input
+                      type="email"
+                      class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                      name="email"
+                      id="email"
+                      required
+                    />
+                    <span
+                      class="hidden text-red-500 text-sm mt-1"
+                      data-error="email"
+                    ></span>
+                  </div>
+
+                  <div>
+                    <label
+                      class="block text-blue-900 dark:text-blue-300 font-medium mb-2 transition-colors"
+                      for="subject"
+                      >Subject
+                    </label>
+                    <div
+                      class="w-full px-4 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                    >
+                      <select
+                        class="w-full px-4 py-3 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white transition-colors"
+                        name="subject"
+                        id="subject"
+                        required
+                      >
+                        <option value="" disabled selected>
+                          Select a subject
+                        </option>
+                        <option value="general">General Inquiry</option>
+                        <option value="support">Technical Support</option>
+                        <option value="billing">Billing Question</option>
+                        <option value="other">Other</option>
+                      </select>
+                      <span
+                        class="hidden text-red-500 text-sm mt-1"
+                        data-error="subject"
+                      ></span>
+                    </div>
+                  </div>
+
+                  <div>
+                    <label
+                      class="block text-blue-900 dark:text-blue-300 font-medium mb-2 transition-colors"
+                      for="message"
+                      >Message
+                    </label>
+                    <textarea
+                      rows="5"
+                      class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                      name="message"
+                      id="message"
+                      required
+                      minlength="10"
+                    >
+                    </textarea>
+                    <span
+                      class="hidden text-red-500 text-sm mt-1"
+                      data-error="message"
+                    ></span>
+                  </div>
+
+                  <div class="flex items-center">
+                    <input
+                      type="checkbox"
+                      id="terms"
+                      class="rounded border-gray-300 dark:border-gray-600 text-orange-500 focus:ring-orange-500 transition-colors"
+                      name="terms"
+                      required
+                    />
+
+                    <label
+                      for="terms"
+                      class="ml-2 text-gray-600 dark:text-gray-300 transition-colors"
+                      >I agree to the terms and conditions </label
+                    ><span
+                      class="hidden text-red-500 text-sm p-2 mt-1"
+                      data-error="terms"
+                    ></span>
+                  </div>
+
+                  <div class="text-center">
+                    <button
+                      type="submit"
+                      class="bg-orange-500 dark:bg-orange-600 text-white px-8 py-3 rounded-lg hover:bg-orange-600 dark:hover:bg-orange-700 transition-colors"
+                    >
+                      Send Message
+                    </button>
+                  </div>
+                  <div class="text-center">
+                    <p class="hidden text-green-500" id="successMessage">
+                      Message sent successfully!
+                    </p>
+                    <p class="hidden text-red-500" id="errorMessage">
+                      Please fix the errors above
+                    </p>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- Contact Form Section End -->
+
+        <!-- Sponsor Icons Carousel -->
+        <section class="py-16 w-full bg-white dark:bg-gray-700">
+          <div class="container mx-auto px-4">
+            <h2
+              class="text-blue-900 dark:text-blue-300 text-4xl font-bold text-center mb-12"
+            >
+              Our Technologies
+            </h2>
+
+            <!-- Carousel Container -->
+            <div class="relative max-w-4xl mx-auto" dir="ltr">
+              <!-- Carousel Viewport -->
+              <div class="overflow-hidden">
+                <div
+                  class="flex transition-transform duration-300"
+                  id="carouselTrack"
+                >
+                  <!-- Icons -->
+                  <div class="flex gap-8 items-center">
+                    <img
+                      src="https://cdn-icons-png.flaticon.com/128/5968/5968292.png"
+                      alt="JavaScript"
+                      class="w-12 h-12 object-contain"
+                    />
+                    <img
+                      src="https://cdn-icons-png.flaticon.com/128/1126/1126012.png"
+                      alt="React"
+                      class="w-12 h-12 object-contain"
+                    />
+                    <img
+                      src="https://cdn-icons-png.flaticon.com/128/5968/5968381.png"
+                      alt="TypeScript"
+                      class="w-12 h-12 object-contain"
+                    />
+                    <img
+                      src="https://cdn-icons-png.flaticon.com/128/5968/5968322.png"
+                      alt="Node.js"
+                      class="w-12 h-12 object-contain"
+                    />
+                    <img
+                      src="https://cdn-icons-png.flaticon.com/128/5968/5968242.png"
+                      alt="CSS"
+                      class="w-12 h-12 object-contain"
+                    />
+                    <img
+                      src="https://cdn-icons-png.flaticon.com/128/174/174854.png"
+                      alt="HTML"
+                      class="w-12 h-12 object-contain"
+                    />
+                    <img
+                      src="https://cdn-icons-png.flaticon.com/128/5968/5968350.png"
+                      alt="Python"
+                      class="w-12 h-12 object-contain"
+                    />
+                    <img
+                      src="https://cdn-icons-png.flaticon.com/128/5968/5968332.png"
+                      alt="PHP"
+                      class="w-12 h-12 object-contain"
+                    />
+                    <img
+                      src="https://cdn-icons-png.flaticon.com/128/226/226777.png"
+                      alt="Java"
+                      class="w-12 h-12 object-contain"
+                    />
+                    <img
+                      src="https://cdn-icons-png.flaticon.com/128/6132/6132222.png"
+                      alt="C++"
+                      class="w-12 h-12 object-contain"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
-      <script src="../js/sponsor-carousel.js"></script>
+        </section>
+        <!-- Sponsor Icons Carousel End -->
+      </main>
+      <!-- Footer -->
       <footer
         class="bg-blue-50 dark:bg-gray-800 border-t border-blue-100 dark:border-gray-700 w-full transition-colors duration-200"
       >
@@ -1235,6 +1080,7 @@
                 <a
                   href="#"
                   class="bg-blue-800 p-2 rounded-full hover:bg-blue-700 transition-colors"
+                  aria-label="Facebook"
                 >
                   <svg
                     class="w-5 h-5 text-white"
@@ -1249,6 +1095,7 @@
                 <a
                   href="#"
                   class="bg-blue-400 p-2 rounded-full hover:bg-blue-500 transition-colors"
+                  aria-label="Twitter"
                 >
                   <svg
                     class="w-5 h-5 text-white"
@@ -1263,6 +1110,7 @@
                 <a
                   href="#"
                   class="bg-blue-500 p-2 rounded-full hover:bg-blue-600 transition-colors"
+                  aria-label="LinkedIn"
                 >
                   <svg
                     class="w-5 h-5 text-white"
@@ -1277,6 +1125,7 @@
                 <a
                   href="#"
                   class="bg-blue-600 p-2 rounded-full hover:bg-blue-700 transition-colors"
+                  aria-label="Instagram"
                 >
                   <svg
                     class="w-5 h-5 text-white"
@@ -1291,6 +1140,7 @@
                 <a
                   href="#"
                   class="bg-green-500 p-2 rounded-full hover:bg-green-600 transition-colors"
+                  aria-label="WhatsApp"
                 >
                   <svg
                     class="w-5 h-5 text-white"
@@ -1463,9 +1313,5 @@
         </div>
       </footer>
     </div>
-    <script src="../js/navbar.js"></script>
-    <script src="../js/darkMode.js"></script>
-    <script src="../js/i18n.js"></script>
-    <script src="../js/translations.js"></script>
   </body>
 </html>

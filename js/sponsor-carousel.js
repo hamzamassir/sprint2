@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
     
     let position = 0;
-    const itemWidth = 150; // Width + gap
+    const itemWidth = 150;//need fix
     const totalItems = originalItems.length;
 
     function moveCarousel() {
@@ -17,7 +17,6 @@ document.addEventListener('DOMContentLoaded', function () {
         track.style.transition = 'transform 0.5s ease-in-out';
         track.style.transform = `translateX(-${position * itemWidth}px)`;
 
-        // Reset when reaching the end
         if (position >= totalItems) {
             setTimeout(() => {
                 track.style.transition = 'none';
@@ -27,6 +26,5 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    // Auto scroll every 3 seconds
     setInterval(moveCarousel, 3000);
 });
