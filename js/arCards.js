@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const container2 = document.querySelector('.cards2'); 
 
 
-    // Function to create a card element
+    // card createion
     function createCard(imageSrc, title, description, linkText, linkHref) {
         const card = document.createElement('div');
         card.className = 'group bg-blue-50 dark:bg-gray-700 h-[430px] overflow-hidden transition-all duration-300 hover:bg-blue-900 dark:hover:bg-blue-900';
@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return card;
     }
 
-    // Define card details
+    //  card
     const cardDetails = [
         {
             imageSrc:{
@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
     ];
     
-    // Append cards to the container
+    //cards to the container
     cardDetails.forEach(detail => {
         const card = createCard(detail.imageSrc, detail.title, detail.description, detail.linkText, detail.linkHref);
         container1.appendChild(card);
