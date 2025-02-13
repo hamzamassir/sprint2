@@ -1,0 +1,19 @@
+{
+    "builds": [
+      {
+        "src": "ar/index.html",
+        "use": "@vercel/static"
+      },
+      {
+        "src": "en/index.html",
+        "use": "@vercel/static"
+      }
+    ],
+    "routes": [
+      { "src": "/ar/(.*)", "dest": "/ar/$1" },
+      { "src": "/en/(.*)", "dest": "/en/$1" },
+      { "src": "/assets/(.*)", "dest": "/assets/$1" },
+      { "src": "/js/(.*)", "dest": "/js/$1" },
+      { "src": "/dist/(.*)", "dest": "/dist/$1" }
+    ]
+  }
