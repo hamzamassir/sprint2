@@ -22,6 +22,7 @@
     <link rel="preload" href="./js/contact-form.js" as="script" />
     <link rel="preload" href="./js/navbar.js" as="script" />
     <link rel="preload" href="./js/darkMode.js" as="script" />
+
     <!-- cards script -->
     <link rel="preload" href="./js/cards.js" as="script" />
 
@@ -847,10 +848,9 @@
                         required
                         minlength="2"
                       />
-                      <span
-                        class="hidden text-red-500 text-sm mt-1"
-                        data-error="firstName"
-                      ></span>
+                      <span class="hidden firstName text-red-500 text-sm mt-1"
+                        >Please enter a valid name</span
+                      >
                     </div>
                     <div>
                       <label
@@ -866,10 +866,9 @@
                         required
                         minlength="2"
                       />
-                      <span
-                        class="hidden text-red-500 text-sm mt-1"
-                        data-error="lastName"
-                      ></span>
+                      <span class="hidden lastName text-red-500 text-sm mt-1"
+                        >Please enter a valid name</span
+                      >
                     </div>
                   </div>
 
@@ -886,10 +885,9 @@
                       id="email"
                       required
                     />
-                    <span
-                      class="hidden text-red-500 text-sm mt-1"
-                      data-error="email"
-                    ></span>
+                    <span class="hidden email text-red-500 text-sm mt-1"
+                      >Please enter a valid email address</span
+                    >
                   </div>
 
                   <div>
@@ -915,10 +913,9 @@
                         <option value="billing">Billing Question</option>
                         <option value="other">Other</option>
                       </select>
-                      <span
-                        class="hidden text-red-500 text-sm mt-1"
-                        data-error="subject"
-                      ></span>
+                      <span class="hidden subject text-red-500 text-sm mt-1"
+                        >Please select a subject</span
+                      >
                     </div>
                   </div>
 
@@ -937,10 +934,9 @@
                       minlength="10"
                     >
                     </textarea>
-                    <span
-                      class="hidden text-red-500 text-sm mt-1"
-                      data-error="message"
-                    ></span>
+                    <span class="hidden message text-red-500 text-sm mt-1"
+                      >Message is required</span
+                    >
                   </div>
 
                   <div class="flex items-center">
@@ -956,10 +952,9 @@
                       for="terms"
                       class="ml-2 text-gray-600 dark:text-gray-300 transition-colors"
                       >I agree to the terms and conditions </label
-                    ><span
-                      class="hidden text-red-500 text-sm p-2 mt-1"
-                      data-error="terms"
-                    ></span>
+                    ><span class="hidden terms text-red-500 text-sm p-2 mt-1"
+                      >You must accept the terms and conditions</span
+                    >
                   </div>
 
                   <div class="text-center">

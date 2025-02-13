@@ -15,14 +15,13 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const showError = (field, errorKey) => {
-        const errorElement = form.querySelector(`[data-error="${field.name}"]`);
+        const errorElement = form.querySelector(`.${field.name}`);
         field.classList.add('border-red-500');
-        errorElement.textContent = i18next.t(`contact.errors.${field.name}.${errorKey}`);
         errorElement.classList.remove('hidden');
     };
 
     const hideError = field => {
-        const errorElement = form.querySelector(`[data-error="${field.name}"]`);
+        const errorElement = form.querySelector(`.${field.name}`);
         field.classList.remove('border-red-500');
         errorElement.classList.add('hidden');
     };
@@ -69,18 +68,15 @@ document.addEventListener('DOMContentLoaded', () => {
         const isValid = validationResults.every(result => result);
 
         if (!isValid) {
-            errorMessage.textContent = i18next.t('contact.error');
             errorMessage.classList.remove('hidden');
             return;
         }
 
         try {
             await new Promise(resolve => setTimeout(resolve, 1000));
-            successMessage.textContent = i18next.t('contact.success');
             successMessage.classList.remove('hidden');
             form.reset();
         } catch (error) {
-            errorMessage.textContent = i18next.t('contact.submitError');
             errorMessage.classList.remove('hidden');
         }
     });
