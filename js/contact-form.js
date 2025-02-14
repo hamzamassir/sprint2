@@ -80,4 +80,27 @@ document.addEventListener('DOMContentLoaded', () => {
             errorMessage.classList.remove('hidden');
         }
     });
+    //message max characters
+    const textarea = document.getElementById('message');
+    const charCount = document.getElementById('charCount');
+    const errorVal = document.querySelector('.message');
+    const path = window.location.pathname;
+
+    const maxChars = 255;
+    textarea.addEventListener('input', () => {
+        console.log(path);
+        const currentLength = textarea.value.length;
+    charCount.textContent = `${currentLength}/${maxChars} characters`;
+    if (currentLength < 10) {
+      charCount.classList.add('text-red-500');
+      if (path.includes('/ar/')) {errorVal.textContent = 'يجب أن تكون الرسالة 10 أحرف على الأقل';
+    } else if (path.includes('/en/')) {errorVal.textContent = 'Message must be at least 10 characters';
+    }
+      
+    } else {
+      charCount.classList.remove('text-red-500');
+      charCount.classList.add('text-green-500');
+
+    }
+    });
 });
